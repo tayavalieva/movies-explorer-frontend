@@ -1,7 +1,7 @@
 .nav {
   display: flex;
   justify-content: center;
-  margin: 151px auto 30px;
+  margin: 151px auto 0;
   align-self: flex-end;
   position: sticky;
   width: 100%;
