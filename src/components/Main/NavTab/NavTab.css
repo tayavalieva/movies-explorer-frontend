@@ -1,0 +1,43 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  margin: 151px auto 30px;
+  align-self: flex-end;
+  position: sticky;
+  width: 100%;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-el {
+  display: inline;
+  margin: 0 10px 0 0 ;
+  padding: 0;
+}
+.list-el:last-of-type {
+  margin: 0;
+}
+
+
+.nav-button {
+  margin: 0;
+  padding: 10px auto;
+  width: 96px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  border: none;
+  background-color: #E8E8E8;
+  transition: opacity 0.3s linear;
+}
+
+.nav-button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
