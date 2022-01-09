@@ -15,13 +15,12 @@
 
 .list-el {
   display: inline;
-  margin: 0 10px 0 0 ;
+  margin: 0 10px 0 0;
   padding: 0;
 }
 .list-el:last-of-type {
   margin: 0;
 }
-
 
 .nav-button {
   margin: 0;
@@ -33,7 +32,7 @@
   line-height: 16px;
   text-align: center;
   border: none;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   transition: opacity 0.3s linear;
 }
 
