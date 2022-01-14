@@ -68,6 +68,11 @@
   font-weight: 500;
   margin-right: 20px;
   cursor: pointer;
+  transition: opacity 0.3s linear;
+}
+
+.about-me__socials-link:hover {
+  opacity: 0.5;
 }
 
 .about-me__socials-link:last-of-type {
