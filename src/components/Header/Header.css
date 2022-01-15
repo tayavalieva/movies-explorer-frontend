@@ -1,0 +1,53 @@
+.header {
+  min-height: 74px;
+  margin: 0;
+  padding: 18px 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__nav-films {
+  margin-left: 44px;
+}
+.header__auth-container {
+}
+
+.header__auth-button {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  background-color: transparent;
+  border: none;
+  padding: 8px 20px;
+  margin-right: 10px;
+  transition: background-color 0.3s linear;
+}
+
+.header__auth-button:hover {
+  cursor: pointer;
+  background-color: #2be080;
+  border-radius: 3px;
+}
+
+.header__auth-button {
+  margin-right: 0;
+}
+
+.header__nav-link {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  transition: font-weight 0.3 linear;
+  margin: 0 16px 0 0;
+}
+
+.header__nav-link:hover {
+  cursor: pointer;
+  font-weight: 500;
+}
