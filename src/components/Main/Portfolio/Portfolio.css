@@ -28,14 +28,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s linear;
+  transition: opacity 0.3s linear;
 }
 
 .portfolio__project-link:hover {
   cursor: pointer;
-  background-color: #2be080;
-  opacity: 0.6;
-  border-radius: 3px;
+  opacity: 0.5;
 }
 
 .portfolio__link-icon {
