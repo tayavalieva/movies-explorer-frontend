@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Header />
           <Main />
           <Movies />
+          <SavedMovies />
           <Footer />
         </div>
       </div>
