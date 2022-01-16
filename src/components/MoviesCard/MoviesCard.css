@@ -53,6 +53,11 @@
   font-weight: normal;
   font-size: 10px;
   line-height: 9px;
-  cursor: pointer;
   align-content: center;
+  transition: opacity 0.3s linear;
+}
+
+.card__save-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
