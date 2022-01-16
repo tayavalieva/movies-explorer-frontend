@@ -2,4 +2,5 @@
   padding: 80px 70px;
   display: flex;
   flex-direction: column;
+  display: none;
 }
