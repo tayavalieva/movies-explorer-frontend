@@ -1,0 +1,58 @@
+.card {
+  box-sizing: border-box;
+  list-style: none;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.card__img {
+  width: 360px;
+  height: 201px;
+  border-radius: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.card__caption {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 14px;
+}
+
+.card__title {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.card__info {
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  padding: 3px 4px;
+  margin: 0;
+  color: #a0a0a0;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 10px;
+}
+
+.card__save-button {
+  position: absolute;
+  top: 14px;
+  left: 274px;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  border: none;
+  width: 72px;
+  height: 21px;
+  color: black;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 9px;
+  cursor: pointer;
+  align-content: center;
+}
