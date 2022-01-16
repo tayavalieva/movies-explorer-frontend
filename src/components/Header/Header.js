@@ -15,6 +15,9 @@ function Header() {
         <button className="header__auth-button">Регистрация</button>
         <button className="header__auth-button">Войти</button>
       </div>
+      <a className="header__profile">
+        Аккаунт <div className="header__profile-icon"></div>
+      </a>
     </header>
   );
 }
