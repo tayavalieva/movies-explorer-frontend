@@ -29,7 +29,9 @@ function App() {
           <Route exact path="/signin">
             <Login />
           </Route>
-          <Register />
+          <Route exact path="/signup">
+            <Register />
+          </Route>
           <NotFound />
         </div>
       </div>
