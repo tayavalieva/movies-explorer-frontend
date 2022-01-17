@@ -1,0 +1,36 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.not-found__title {
+  font-weight: normal;
+  font-size: 140px;
+  line-height: 169px;
+  margin: 0 auto 0;
+}
+
+.not-found__content {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 5px auto 0;
+}
+
+.not-found__link {
+  text-decoration: none;
+  color: #2be080;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  margin: 184px auto 0;
+  transition: opacity 0.3s linear;
+}
+
+.not-found__link:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
