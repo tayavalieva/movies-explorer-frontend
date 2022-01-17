@@ -12,13 +12,11 @@ function App() {
     <div className="page">
       <div className="page__container">
         <div className="App">
-          <Header />
           <Main />
           <Movies />
           <SavedMovies />
           <Profile />
           <Login />
-          <Footer />
         </div>
       </div>
     </div>

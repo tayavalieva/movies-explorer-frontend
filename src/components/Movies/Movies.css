@@ -1,8 +1,11 @@
 .movies {
+  display: none;
+}
+
+.movies-container {
   padding: 80px 70px;
   display: flex;
   flex-direction: column;
-  display: none;
 }
 
 .movies__more-button {

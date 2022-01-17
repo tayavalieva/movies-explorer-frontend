@@ -1,6 +1,9 @@
 .saved-movies {
-  padding: 80px 70px;
   display: flex;
   flex-direction: column;
   display: none;
+}
+
+.saved-movies-container {
+  padding: 80px 70px;
 }
