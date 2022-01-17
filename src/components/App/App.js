@@ -1,6 +1,6 @@
+import React from "react";
+import { Route } from "react-router-dom";
 import "./App.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -14,7 +14,9 @@ function App() {
     <div className="page">
       <div className="page__container">
         <div className="App">
-          <Main />
+          <Route path="/">
+            <Main />
+          </Route>
           <Movies />
           <SavedMovies />
           <Profile />
