@@ -7,7 +7,7 @@ function Login() {
   return (
     <section className="login">
       <Form
-        title="Добро пожаловать!"
+        title="Рады видеть!"
         link={
           <div className="form__text-container">
             <p className="form__text">
@@ -21,11 +21,6 @@ function Login() {
           </div>
         }
       >
-        <label className="form__input-label">
-          Имя
-          <input className="form__input"></input>
-          <span className="form__input-error"></span>
-        </label>
         <label className="form__input-label">
           E-mail
           <input className="form__input"></input>
