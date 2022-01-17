@@ -1,3 +1,5 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Register.css";
 import Form from "../Form/Form";
 
@@ -11,9 +13,9 @@ function Register() {
             <p className="form__text">
               Уже зарегистрированы?
               <span>
-                <a href="#" className="form__link">
+                <Link to="/signin" className="form__link">
                   Войти
-                </a>
+                </Link>
               </span>
             </p>
           </div>

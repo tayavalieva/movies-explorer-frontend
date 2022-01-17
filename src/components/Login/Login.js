@@ -13,9 +13,9 @@ function Login() {
             <p className="form__text">
               Еще не зарегистрированы?
               <span>
-                <a href="#" className="form__link">
+                <Link to="/signup" className="form__link">
                   Регистрация
-                </a>
+                </Link>
               </span>
             </p>
           </div>

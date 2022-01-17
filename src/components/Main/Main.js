@@ -1,3 +1,5 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Main.css";
 import Header from "../Header/Header";
 import Logo from "../Logo/Logo";
@@ -14,8 +16,12 @@ function Main() {
       <Header>
         <Logo />
         <div className="header__auth-container">
-          <button className="header__auth-button">Регистрация</button>
-          <button className="header__auth-button">Войти</button>
+          <Link to="/signup" className="header__auth-link">
+            Регистрация
+          </Link>
+          <Link to="/signin" className="header__auth-link">
+            Войти
+          </Link>
         </div>
       </Header>
       <Promo />

@@ -23,7 +23,7 @@
 .header__auth-container {
 }
 
-.header__auth-button {
+.header__auth-link {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -32,9 +32,11 @@
   padding: 8px 20px;
   margin-right: 10px;
   transition: background-color 0.3s linear;
+  text-decoration: none;
+  color: black;
 }
 
-.header__auth-button:hover {
+.header__auth-link:hover {
   cursor: pointer;
   background-color: #2be080;
   border-radius: 3px;
