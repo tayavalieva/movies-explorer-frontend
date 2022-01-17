@@ -23,7 +23,9 @@ function App() {
           <Route exact path="/saved-movies">
             <SavedMovies />
           </Route>
-          <Profile />
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
           <Login />
           <Register />
           <NotFound />
