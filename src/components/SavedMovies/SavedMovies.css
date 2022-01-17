@@ -1,7 +1,6 @@
 .saved-movies {
   display: flex;
   flex-direction: column;
-  display: none;
 }
 
 .saved-movies-container {

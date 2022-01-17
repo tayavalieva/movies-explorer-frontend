@@ -20,7 +20,9 @@ function App() {
           <Route exact path="/movies">
             <Movies />
           </Route>
-          <SavedMovies />
+          <Route exact path="/saved-movies">
+            <SavedMovies />
+          </Route>
           <Profile />
           <Login />
           <Register />
