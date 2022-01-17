@@ -14,10 +14,12 @@ function App() {
     <div className="page">
       <div className="page__container">
         <div className="App">
-          <Route path="/">
+          <Route exact path="/">
             <Main />
           </Route>
-          <Movies />
+          <Route exact path="/movies">
+            <Movies />
+          </Route>
           <SavedMovies />
           <Profile />
           <Login />
