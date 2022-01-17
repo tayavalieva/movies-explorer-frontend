@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -14,25 +14,29 @@ function App() {
     <div className="page">
       <div className="page__container">
         <div className="App">
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route exact path="/movies">
-            <Movies />
-          </Route>
-          <Route exact path="/saved-movies">
-            <SavedMovies />
-          </Route>
-          <Route exact path="/profile">
-            <Profile />
-          </Route>
-          <Route exact path="/signin">
-            <Login />
-          </Route>
-          <Route exact path="/signup">
-            <Register />
-          </Route>
-          <NotFound />
+          <Switch>
+            <Route exact path="/">
+              <Main />
+            </Route>
+            <Route exact path="/movies">
+              <Movies />
+            </Route>
+            <Route exact path="/saved-movies">
+              <SavedMovies />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
+            <Route exact path="/signin">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Register />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
         </div>
       </div>
     </div>
