@@ -1,10 +1,13 @@
 import "./Profile.css";
 import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 
 function Profile() {
   return (
     <section className="profile">
-      <Header />
+      <Header>
+        <Navigation />
+      </Header>
       <div className="profile-container">
         <h2 className="profile__greeting">Привет, Виталий!</h2>
         <form className="profile__form-container">

@@ -5,11 +5,14 @@ import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
+import Navigation from "../Navigation/Navigation";
 
 function Movies() {
   return (
     <section className="movies">
-      <Header />
+      <Header>
+        <Navigation />
+      </Header>
       <div className="movies-container">
         <SearchForm />
         <FilterCheckbox />
