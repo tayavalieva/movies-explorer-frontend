@@ -26,7 +26,9 @@ function App() {
           <Route exact path="/profile">
             <Profile />
           </Route>
-          <Login />
+          <Route exact path="/signin">
+            <Login />
+          </Route>
           <Register />
           <NotFound />
         </div>
