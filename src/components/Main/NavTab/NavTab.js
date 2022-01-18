@@ -1,19 +1,18 @@
+import React from "react";
 import "./NavTab.css";
 
 function NavTab() {
   return (
     <nav className="nav">
-      <ul className="nav-list">
-        <li className="list-el">
-          <button className="nav-button">О проекте</button>
-        </li>
-        <li className="list-el">
-          <button className="nav-button">Технологии</button>
-        </li>
-        <li className="list-el">
-          <button className="nav-button">Студент</button>
-        </li>
-      </ul>
+      <a href="#about-project" className="nav-link">
+        О проекте
+      </a>
+      <a href="#tech" className="nav-link">
+        Технологии
+      </a>
+      <a href="#aboutme" className="nav-link">
+        Студент
+      </a>
     </nav>
   );
 }
