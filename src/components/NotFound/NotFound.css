@@ -34,3 +34,20 @@
   cursor: pointer;
   opacity: 0.6;
 }
+
+@media screen and (max-width: 767px) {
+  .not-found__title {
+    font-size: 80px;
+    line-height: 97px;
+  }
+
+  .not-found__content {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 10px auto 0;
+  }
+  .not-found__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
