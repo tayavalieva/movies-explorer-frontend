@@ -4,3 +4,9 @@
   align-items: center;
   padding-top: 70px;
 }
+
+@media screen and (max-width: 454px) {
+  .register {
+    padding: 56px 30px 30px;
+  }
+}

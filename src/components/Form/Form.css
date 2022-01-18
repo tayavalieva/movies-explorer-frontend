@@ -107,3 +107,24 @@
   line-height: 12px;
   margin: 6px 0 0;
 }
+
+@media screen and (max-width: 454px) {
+  .form {
+    width: 100%;
+    align-items: center;
+  }
+
+  .form__input-container {
+    width: 100%;
+  }
+
+  .form__button {
+    width: 100%;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .form__text-container {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
