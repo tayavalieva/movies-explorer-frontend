@@ -19,6 +19,11 @@ function Navigation() {
         <NavLink to="/profile" className="header__profile">
           Аккаунт <div className="header__profile-icon"></div>
         </NavLink>
+        <div className="header__menu">
+          <div className="header__menu-el"></div>
+          <div className="header__menu-el"></div>
+          <div className="header__menu-el"></div>
+        </div>
       </nav>
     </>
   );

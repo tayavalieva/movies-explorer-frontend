@@ -100,3 +100,38 @@
   background-repeat: no-repeat;
   background-size: auto;
 }
+
+.header__menu {
+  display: none;
+  transition: opacity 0.3s linear;
+}
+
+.header__menu:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.header__menu-el {
+  width: 28px;
+  height: 3px;
+  background-color: black;
+  margin-bottom: 7px;
+}
+
+.header__menu-el:last-of-type {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .header__menu {
+    display: block;
+  }
+
+  .header__nav-link {
+    display: none;
+  }
+
+  .header__profile {
+    display: none;
+  }
+}
