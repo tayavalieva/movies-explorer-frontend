@@ -2,7 +2,6 @@
   min-height: 74px;
   margin: 0;
   padding: 18px 70px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +11,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
 }
 .header__nav-films {
@@ -123,6 +121,9 @@
 }
 
 @media screen and (max-width: 1023px) {
+  .header {
+    padding: 18px 30px;
+  }
   .header__menu {
     display: block;
   }
@@ -133,5 +134,16 @@
 
   .header__profile {
     display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header {
+    padding: 18px 14px;
+  }
+  .header__auth-link {
+    font-size: 10px;
+    padding: 5px 12px;
+    margin-right: 2px;
   }
 }
