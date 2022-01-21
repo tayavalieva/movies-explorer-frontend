@@ -54,3 +54,41 @@
   cursor: pointer;
   font-weight: 500;
 }
+
+@media screen and (max-width: 1007px) {
+  .footer {
+    padding: 79px 30px 20px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .footer {
+    padding: 79px 10px 10px;
+  }
+  .footer__nav {
+    flex-direction: column-reverse;
+  }
+  .footer__caption {
+    font-size: 12px;
+    line-height: 15px;
+    padding-bottom: 21px;
+  }
+  .footer__nav {
+    padding-top: 30px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .footer__nav-list-el {
+    display: block;
+    margin: 12px 0 0;
+    text-align: center;
+  }
+  .footer__nav-list-el:first-of-type {
+    margin-top: 0;
+  }
+  .footer__nav-date {
+    color: #a0a0a0;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+}
