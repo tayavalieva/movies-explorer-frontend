@@ -11,7 +11,7 @@ function FilterCheckbox() {
           className="filter-checkbox__input"
         ></input>
         Короткометражки
-        <span class="filter-checkbox__toggle"></span>
+        <span className="filter-checkbox__toggle"></span>
       </label>
     </section>
   );
