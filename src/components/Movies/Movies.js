@@ -24,7 +24,7 @@ function Movies() {
   return (
     <section className="movies">
       <Header>
-        <Navigation onMenuClick={handleMenuClick} onClose={closeSideBar} />
+        <Navigation onMenuClick={handleMenuClick} />
       </Header>
       <div className="movies-container">
         <SearchForm />
