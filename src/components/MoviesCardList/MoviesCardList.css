@@ -13,3 +13,10 @@
     grid-template-columns: repeat(auto-fit, minmax(min-content, 339px));
   }
 }
+
+@media screen and (max-width: 640px) {
+  .card-list {
+    grid-gap: 47px 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 300px));
+  }
+}

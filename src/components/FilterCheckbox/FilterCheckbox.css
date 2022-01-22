@@ -60,3 +60,13 @@
   background-color: #2be080;
   transform: translateX(18px);
 }
+
+@media screen and (max-width: 640px) {
+  .filter-checkbox {
+    padding: 44px 0 43px;
+  }
+  .filter-checkbox__container {
+    padding-left: 49px;
+    font-size: 11px;
+  }
+}

@@ -32,10 +32,18 @@
   .movies-container {
     padding: 80px 30px;
   }
+
+  .movies__more-button {
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-width: 640px) {
   .movies-container {
-    padding: 0 10px;
+    padding: 0 10px 80px;
+  }
+
+  .movies__more-button {
+    width: 240px;
   }
 }
