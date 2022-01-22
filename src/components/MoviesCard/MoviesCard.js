@@ -9,6 +9,7 @@ function MoviesCard() {
         <button className="card__save-button" type="button">
           Сохранить
         </button>
+        <div className="card__saved-icon"></div>
         <h2 className="card__title">33 слова о дизайне</h2>
         <p className="card__info">1ч 17м</p>
       </div>

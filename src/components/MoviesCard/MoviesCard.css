@@ -70,6 +70,19 @@
   opacity: 0.6;
 }
 
+.card__saved-icon {
+  background-image: url(../../images//saved-icon.svg);
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  top: 14px;
+  left: 325px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+}
+
 @media screen and (max-width: 1004px) {
   .card__img {
     width: 339px;
@@ -80,5 +93,15 @@
   }
   .card__save-button {
     left: 253px;
+  }
+  .card__saved-icon {
+    left: 304px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .card__saved-icon {
+    top: 10px;
+    left: 269px;
   }
 }
