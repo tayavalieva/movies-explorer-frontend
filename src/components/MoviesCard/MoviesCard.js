@@ -1,20 +1,17 @@
 import "./MoviesCard.css";
-import savedMoviesList from "../../utils/savedMoviesList";
-console.log(savedMoviesList);
+import React, { useState } from "react";
+//import savedMoviesList from "../../utils/savedMoviesList";
 
-function MoviesCard({ movie, onSaveClick }) {
-  const isSaved = savedMoviesList.some((m) => m.id === movie.id);
+function MoviesCard({ movie }) {
+  //const isSaved = savedMoviesList.some((m) => m.id === movie.id);
+  const [isSaved, setIsSaved] = useState(false);
 
-  const saveButtonClassName = `card__save-button ${
-    isSaved ? "card__save-button_disabled" : ""
+  const saveButtonClassName = `${
+    isSaved ? "card__save-button_saved" : "card__save-button"
   }`;
 
-  const savedIconClassName = `card__saved-icon ${
-    isSaved ? "card__saved-icon_disabled" : ""
-  }`;
-
-  function handleSaveClick() {
-    onSaveClick();
+  function toggleSaveClick() {
+    setIsSaved(!isSaved);
   }
 
   return (
@@ -24,11 +21,10 @@ function MoviesCard({ movie, onSaveClick }) {
         <button
           className={saveButtonClassName}
           type="button"
-          onClick={handleSaveClick}
+          onClick={toggleSaveClick}
         >
-          Сохранить
+          {isSaved ? "" : "Сохранить"}
         </button>
-        <div className={savedIconClassName}></div>
         <h2 className="card__title">{movie.nameRU}</h2>
         <p className="card__info">1ч 17м</p>
       </div>

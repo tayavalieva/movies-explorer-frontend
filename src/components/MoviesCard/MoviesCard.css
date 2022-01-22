@@ -74,7 +74,7 @@
   opacity: 0.6;
 }
 
-.card__saved-icon {
+.card__save-button_saved {
   background-image: url(../../images//saved-icon.svg);
   width: 21px;
   height: 21px;
@@ -84,10 +84,17 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  transition: opacity 0.3s linear;
 }
 
-.card__saved-icon_disabled {
-  display: none;
+.card__save-button_saved:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 1004px) {
@@ -101,7 +108,7 @@
   .card__save-button {
     left: 253px;
   }
-  .card__saved-icon {
+  .card__save-button_saved {
     left: 304px;
   }
 }
@@ -125,7 +132,7 @@
     left: 218px;
   }
 
-  .card__saved-icon {
+  .card__save-button_saved {
     top: 10px;
     left: 269px;
   }
