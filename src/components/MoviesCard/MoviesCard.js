@@ -1,16 +1,35 @@
 import "./MoviesCard.css";
-import Image from "../../images/card-img2.jpg";
+import savedMoviesList from "../../utils/savedMoviesList";
+console.log(savedMoviesList);
 
-function MoviesCard() {
+function MoviesCard({ movie, onSaveClick }) {
+  const isSaved = savedMoviesList.some((m) => m.id === movie.id);
+
+  const saveButtonClassName = `card__save-button ${
+    isSaved ? "card__save-button_disabled" : ""
+  }`;
+
+  const savedIconClassName = `card__saved-icon ${
+    isSaved ? "card__saved-icon_disabled" : ""
+  }`;
+
+  function handleSaveClick() {
+    onSaveClick();
+  }
+
   return (
     <li className="card">
-      <img src={Image} alt="33 слова о дизайне" className="card__img"></img>
+      <img src={movie.image} alt={movie.nameRU} className="card__img"></img>
       <div className="card__caption">
-        <button className="card__save-button" type="button">
+        <button
+          className={saveButtonClassName}
+          type="button"
+          onClick={handleSaveClick}
+        >
           Сохранить
         </button>
-        <div className="card__saved-icon"></div>
-        <h2 className="card__title">33 слова о дизайне</h2>
+        <div className={savedIconClassName}></div>
+        <h2 className="card__title">{movie.nameRU}</h2>
         <p className="card__info">1ч 17м</p>
       </div>
     </li>

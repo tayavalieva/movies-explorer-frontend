@@ -13,7 +13,6 @@ function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
 
   function handleMenuClick() {
-    console.log("click");
     setSideModalOpen(true);
   }
 
