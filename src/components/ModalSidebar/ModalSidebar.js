@@ -2,9 +2,12 @@ import "./ModalSidebar.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function ModalSidebar() {
+function ModalSidebar(props) {
+  const className = `modal-sidebar ${
+    props.isOpen ? "modal-sidebar_opened" : ""
+  }`;
   return (
-    <div className="modal-sidebar">
+    <div className={className}>
       <div className="modal-sidebar__overlay"></div>
       <div className="modal-sidebar__nav-container">
         <div>
@@ -25,7 +28,7 @@ function ModalSidebar() {
             </NavLink>
           </nav>
         </div>
-        <button className="modal-sidebar__close-btn"></button>
+        <button className="modal-sidebar__close-btn" type="button"></button>
       </div>
     </div>
   );
