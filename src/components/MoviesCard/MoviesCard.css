@@ -2,8 +2,11 @@
   box-sizing: border-box;
   list-style: none;
   display: inline-block;
-  cursor: pointer;
   position: relative;
+}
+
+.card:hover {
+  cursor: pointer;
 }
 
 .card__img {
@@ -55,9 +58,27 @@
   line-height: 9px;
   align-content: center;
   transition: opacity 0.3s linear;
+  display: none;
+}
+
+.card:hover .card__save-button {
+  display: block;
 }
 
 .card__save-button:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+
+@media screen and (max-width: 1004px) {
+  .card__img {
+    width: 339px;
+    height: 190px;
+  }
+  .card__caption {
+    padding: 25px 0 0;
+  }
+  .card__save-button {
+    left: 253px;
+  }
 }
