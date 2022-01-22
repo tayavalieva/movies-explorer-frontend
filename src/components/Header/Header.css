@@ -146,4 +146,9 @@
     padding: 5px 12px;
     margin-right: 2px;
   }
+  .header__menu-el {
+    height: 2.5px;
+    width: 22px;
+    margin-bottom: 6.5px;
+  }
 }
