@@ -28,7 +28,11 @@ function ModalSidebar(props) {
             </NavLink>
           </nav>
         </div>
-        <button className="modal-sidebar__close-btn" type="button"></button>
+        <button
+          className="modal-sidebar__close-btn"
+          type="button"
+          onClick={props.onClose}
+        ></button>
       </div>
     </div>
   );

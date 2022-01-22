@@ -34,7 +34,7 @@ function Movies() {
         <button className="movies__more-button">Ещё</button>
       </div>
       <Footer />
-      <ModalSidebar isOpen={isSideModalOpen} />
+      <ModalSidebar isOpen={isSideModalOpen} onClose={closeSideBar} />
     </section>
   );
 }
