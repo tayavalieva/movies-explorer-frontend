@@ -28,7 +28,7 @@
   background-color: transparent;
   border: none;
   padding: 8px 20px;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
   transition: background-color 0.3s linear;
   text-decoration: none;
   color: black;
@@ -38,6 +38,10 @@
   cursor: pointer;
   background-color: #2be080;
   border-radius: 3px;
+}
+
+.header__auth-link:last-of-type {
+  margin-right: 0;
 }
 
 .header__auth-button {
@@ -146,6 +150,7 @@
     padding: 5px 12px;
     margin-right: 2px;
   }
+
   .header__menu-el {
     height: 2.5px;
     width: 22px;
