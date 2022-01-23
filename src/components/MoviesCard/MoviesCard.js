@@ -13,8 +13,6 @@ function MoviesCard({ movie, isSavedMoviesList }) {
       ? "card__save-button_saved"
       : "card__save-button"
   }`;
-  console.log(isSavedMoviesList);
-  console.log(buttonClassName);
 
   function toggleSaveClick() {
     setIsSaved(!isSaved);
