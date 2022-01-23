@@ -5,6 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Navigation from "../Navigation/Navigation";
+import savedMoviesList from "../../utils/savedMoviesList";
 
 function SavedMovies() {
   return (
@@ -15,7 +16,7 @@ function SavedMovies() {
       <div className="saved-movies-container">
         <SearchForm />
         <FilterCheckbox />
-        <MoviesCardList />
+        <MoviesCardList movies={savedMoviesList} isSavedMoviesList={true} />
       </div>
       <Footer />
     </section>

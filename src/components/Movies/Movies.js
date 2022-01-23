@@ -8,6 +8,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import Navigation from "../Navigation/Navigation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import moviesList from "../../utils/moviesList";
 
 function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
@@ -29,7 +30,7 @@ function Movies() {
         <SearchForm />
         <FilterCheckbox />
         <Preloader />
-        <MoviesCardList />
+        <MoviesCardList movies={moviesList} isSavedMoviesList={false} />
         <button className="movies__more-button">Ещё</button>
       </div>
       <Footer />

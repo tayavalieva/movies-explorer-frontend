@@ -2,13 +2,19 @@ import "./MoviesCard.css";
 import React, { useState } from "react";
 //import savedMoviesList from "../../utils/savedMoviesList";
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, isSavedMoviesList }) {
   //const isSaved = savedMoviesList.some((m) => m.id === movie.id);
   const [isSaved, setIsSaved] = useState(false);
 
-  const saveButtonClassName = `${
-    isSaved ? "card__save-button_saved" : "card__save-button"
+  const buttonClassName = `${
+    isSavedMoviesList
+      ? "card__delete-button"
+      : isSaved
+      ? "card__save-button_saved"
+      : "card__save-button"
   }`;
+  console.log(isSavedMoviesList);
+  console.log(buttonClassName);
 
   function toggleSaveClick() {
     setIsSaved(!isSaved);
@@ -19,11 +25,11 @@ function MoviesCard({ movie }) {
       <img src={movie.image} alt={movie.nameRU} className="card__img"></img>
       <div className="card__caption">
         <button
-          className={saveButtonClassName}
+          className={buttonClassName}
           type="button"
           onClick={toggleSaveClick}
         >
-          {isSaved ? "" : "Сохранить"}
+          {isSavedMoviesList ? "" : isSaved ? "" : "Сохранить"}
         </button>
         <h2 className="card__title">{movie.nameRU}</h2>
         <p className="card__info">1ч 17м</p>

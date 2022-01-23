@@ -1,15 +1,18 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import moviesList from "../../utils/moviesList";
 
-console.log(moviesList);
-
-function MoviesCardList() {
+function MoviesCardList(props) {
   return (
     <section>
       <ul className="card-list">
-        {moviesList.map((movie) => {
-          return <MoviesCard movie={movie} />;
+        {props.movies.map((movie) => {
+          return (
+            <MoviesCard
+              movie={movie}
+              key={movie.id}
+              isSavedMoviesList={props.isSavedMoviesList}
+            />
+          );
         })}
       </ul>
     </section>
