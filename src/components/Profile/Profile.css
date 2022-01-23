@@ -95,3 +95,17 @@
   cursor: pointer;
   background-color: #e8e8e8;
 }
+
+@media screen and (max-width: 640px) {
+  .profile-container {
+    padding: 70px 10px 40px;
+  }
+
+  .profile__form-container {
+    width: 260px;
+  }
+
+  .profile__exit-btn {
+    width: 300px;
+  }
+}
