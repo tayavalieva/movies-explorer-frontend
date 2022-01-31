@@ -4,5 +4,11 @@
 }
 
 .saved-movies-container {
-  padding: 80px 70px;
+  padding: 80px 70px 140px;
+}
+
+@media screen and (max-width: 640px) {
+  .saved-movies-container {
+    padding: 81px 14px 140px;
+  }
 }
