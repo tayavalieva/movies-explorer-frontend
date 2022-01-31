@@ -25,11 +25,13 @@ function SavedMovies() {
       <Header>
         <Navigation onMenuClick={handleMenuClick} />
       </Header>
-      <div className="saved-movies-container">
-        <SearchForm />
-        <FilterCheckbox />
-        <MoviesCardList movies={savedMoviesList} isSavedMoviesList={true} />
-      </div>
+      <main>
+        <div className="saved-movies-container">
+          <SearchForm />
+          <FilterCheckbox />
+          <MoviesCardList movies={savedMoviesList} isSavedMoviesList={true} />
+        </div>
+      </main>
       <Footer />
       <ModalSidebar isOpen={isSideModalOpen} onClose={closeSideBar} />
     </section>

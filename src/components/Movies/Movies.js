@@ -26,13 +26,15 @@ function Movies() {
       <Header>
         <Navigation onMenuClick={handleMenuClick} />
       </Header>
-      <div className="movies-container">
-        <SearchForm />
-        <FilterCheckbox />
-        <Preloader />
-        <MoviesCardList movies={moviesList} isSavedMoviesList={false} />
-        <button className="movies__more-button">Ещё</button>
-      </div>
+      <main>
+        <div className="movies-container">
+          <SearchForm />
+          <FilterCheckbox />
+          <Preloader />
+          <MoviesCardList movies={moviesList} isSavedMoviesList={false} />
+          <button className="movies__more-button">Ещё</button>
+        </div>
+      </main>
       <Footer />
       <ModalSidebar isOpen={isSideModalOpen} onClose={closeSideBar} />
     </section>

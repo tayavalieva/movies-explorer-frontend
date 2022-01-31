@@ -34,15 +34,17 @@ function Main() {
           </Link>
         </div>
       </Header>
-      <Promo
-        onProjectClick={handleProjectClick}
-        onTechsClick={handleTechsClick}
-        onAboutMeClick={handleAboutMeClick}
-      />
-      <AboutProject ref={projectRef} />
-      <Techs ref={techsRef} />
-      <AboutMe ref={aboutMeRef} />
-      <Portfolio />
+      <main>
+        <Promo
+          onProjectClick={handleProjectClick}
+          onTechsClick={handleTechsClick}
+          onAboutMeClick={handleAboutMeClick}
+        />
+        <AboutProject ref={projectRef} />
+        <Techs ref={techsRef} />
+        <AboutMe ref={aboutMeRef} />
+        <Portfolio />
+      </main>
       <Footer />
     </section>
   );
