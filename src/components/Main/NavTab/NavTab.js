@@ -1,18 +1,17 @@
-import React from "react";
 import "./NavTab.css";
 
-function NavTab() {
+function NavTab({ onProjectClick, onTechsClick, onAboutMeClick }) {
   return (
     <nav className="nav">
-      <a href="#about-project" className="nav-link">
+      <button onClick={onProjectClick} className="nav-link">
         О проекте
-      </a>
-      <a href="#tech" className="nav-link">
+      </button>
+      <button onClick={onTechsClick} className="nav-link">
         Технологии
-      </a>
-      <a href="#aboutme" className="nav-link">
+      </button>
+      <button onClick={onAboutMeClick} className="nav-link">
         Студент
-      </a>
+      </button>
     </nav>
   );
 }

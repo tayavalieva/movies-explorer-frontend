@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Main.css";
 import Header from "../Header/Header";
@@ -11,6 +11,16 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 
 function Main() {
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+
+  const projectRef = useRef(null);
+  const techsRef = useRef(null);
+  const aboutMeRef = useRef(null);
+
+  const handleProjectClick = () => scrollToRef(projectRef);
+  const handleTechsClick = () => scrollToRef(techsRef);
+  const handleAboutMeClick = () => scrollToRef(aboutMeRef);
+
   return (
     <section className="main">
       <Header>
@@ -24,10 +34,14 @@ function Main() {
           </Link>
         </div>
       </Header>
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
+      <Promo
+        onProjectClick={handleProjectClick}
+        onTechsClick={handleTechsClick}
+        onAboutMeClick={handleAboutMeClick}
+      />
+      <AboutProject ref={projectRef} />
+      <Techs ref={techsRef} />
+      <AboutMe ref={aboutMeRef} />
       <Portfolio />
       <Footer />
     </section>
