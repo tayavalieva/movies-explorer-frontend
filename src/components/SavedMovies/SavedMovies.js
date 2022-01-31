@@ -1,17 +1,29 @@
+import { useState } from "react";
 import "./SavedMovies.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import Navigation from "../Navigation/Navigation";
 import savedMoviesList from "../../utils/savedMoviesList";
 
 function SavedMovies() {
+  const [isSideModalOpen, setSideModalOpen] = useState(false);
+
+  function handleMenuClick() {
+    setSideModalOpen(true);
+  }
+
+  function closeSideBar() {
+    setSideModalOpen(false);
+  }
+
   return (
     <section className="saved-movies">
       <Header>
-        <Navigation />
+        <Navigation onMenuClick={handleMenuClick} />
       </Header>
       <div className="saved-movies-container">
         <SearchForm />
@@ -19,6 +31,7 @@ function SavedMovies() {
         <MoviesCardList movies={savedMoviesList} isSavedMoviesList={true} />
       </div>
       <Footer />
+      <ModalSidebar isOpen={isSideModalOpen} onClose={closeSideBar} />
     </section>
   );
 }
