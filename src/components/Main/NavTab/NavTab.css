@@ -1,0 +1,53 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 151px auto 0;
+  align-self: flex-end;
+  width: 100%;
+}
+
+.nav-link {
+  margin-left: 10px;
+  padding: 10px 0;
+  width: 96px;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+  color: black;
+  background-color: #e8e8e8;
+  text-align: center;
+  border: none;
+  display: inline-block;
+  border-radius: 10px;
+  transition: background-color 0.3s linear;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+  background-color: #2be080;
+}
+
+.nav-link:first-of-type {
+  margin-left: 0;
+}
+
+@media screen and (max-width: 1007px) {
+  .nav {
+    margin-top: 314px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .nav {
+    margin-top: 212px;
+  }
+  .nav-link {
+    padding: 5px 0;
+    font-size: 10px;
+    line-height: 16px;
+    width: 82px;
+    border-radius: 6px;
+    margin-left: 6px;
+  }
+}

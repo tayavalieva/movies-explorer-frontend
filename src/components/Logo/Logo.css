@@ -1,0 +1,16 @@
+.logo {
+  background-image: url(../../images/logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 38px;
+  height: 38px;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.3s linear;
+}
+
+.logo:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
