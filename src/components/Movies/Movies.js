@@ -9,9 +9,11 @@ import Preloader from "../Preloader/Preloader";
 import Navigation from "../Navigation/Navigation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import moviesList from "../../utils/moviesList";
+import * as moviesApi from "../../utils/MoviesApi";
 
 function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
+  const [allMovies, setMovies] = useState();
 
   function handleMenuClick() {
     setSideModalOpen(true);
@@ -21,6 +23,21 @@ function Movies() {
     setSideModalOpen(false);
   }
 
+  useEffect(() => {
+    moviesApi
+      .getAllMovies()
+      .then((allMovies) => {
+        setMovies(allMovies);
+        console.log(allMovies);
+        localStorage.setItem("movies", JSON.stringify(allMovies));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  function getMovie(keyword) {
+    console.log(keyword);
+  }
+
   return (
     <section className="movies">
       <Header>
@@ -28,7 +45,7 @@ function Movies() {
       </Header>
       <main>
         <div className="movies-container">
-          <SearchForm />
+          <SearchForm onGetMovie={getMovie} />
           <FilterCheckbox />
           <Preloader />
           <MoviesCardList movies={moviesList} isSavedMoviesList={false} />
