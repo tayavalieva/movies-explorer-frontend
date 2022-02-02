@@ -25,20 +25,27 @@ function MoviesCard({ movie, isSavedMoviesList }) {
 
   return (
     <li className="card">
-      <div className="card__img-container">
-        <img src={imgURL} alt={movie.nameRU} className="card__img"></img>
-      </div>
-      <div className="card__caption">
-        <button
-          className={buttonClassName}
-          type="button"
-          onClick={toggleSaveClick}
-        >
-          {isSavedMoviesList ? "" : isSaved ? "" : "Сохранить"}
-        </button>
-        <h2 className="card__title">{movie.nameRU}</h2>
-        <p className="card__info">1ч 17м</p>
-      </div>
+      <a
+        href={movie.trailerLink}
+        className="card__link"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div className="card__img-container">
+          <img src={imgURL} alt={movie.nameRU} className="card__img"></img>
+        </div>
+        <div className="card__caption">
+          <button
+            className={buttonClassName}
+            type="button"
+            onClick={toggleSaveClick}
+          >
+            {isSavedMoviesList ? "" : isSaved ? "" : "Сохранить"}
+          </button>
+          <h2 className="card__title">{movie.nameRU}</h2>
+          <p className="card__info">1ч 17м</p>
+        </div>
+      </a>
     </li>
   );
 }

@@ -9,6 +9,12 @@
   cursor: pointer;
 }
 
+.card__link {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
 .card__img-container {
   width: 360px;
   height: 201px;
