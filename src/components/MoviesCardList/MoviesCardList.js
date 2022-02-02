@@ -3,7 +3,6 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
-  //let buttonMoreClassName = `card-list__more`
   return (
     <section className="card-list__container">
       <Preloader />

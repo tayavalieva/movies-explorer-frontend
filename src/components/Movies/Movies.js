@@ -8,7 +8,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 import Navigation from "../Navigation/Navigation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
-//import moviesList from "../../utils/moviesList";
 import * as moviesApi from "../../utils/MoviesApi";
 
 function Movies() {
