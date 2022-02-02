@@ -13,7 +13,8 @@ import * as moviesApi from "../../utils/MoviesApi";
 
 function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
-  const [allMovies, setMovies] = useState();
+  const [allMovies, setAllMovies] = useState([]);
+  const [foundMovies, setFoundMovies] = useState([]);
 
   function handleMenuClick() {
     setSideModalOpen(true);
@@ -27,15 +28,28 @@ function Movies() {
     moviesApi
       .getAllMovies()
       .then((allMovies) => {
-        setMovies(allMovies);
-        console.log(allMovies);
-        localStorage.setItem("movies", JSON.stringify(allMovies));
+        setAllMovies(allMovies);
+        localStorage.setItem("allMovies", JSON.stringify(allMovies));
       })
       .catch((err) => console.log(err));
   }, []);
 
-  function getMovie(keyword) {
-    console.log(keyword);
+  function getMovie(name) {
+    const keyword = name.toLowerCase();
+
+    const foundMovies = allMovies.filter(
+      (movie) =>
+        (movie.nameRU != null &&
+          movie.nameRU.toLowerCase().includes(keyword)) ||
+        (movie.nameEN != null && movie.nameEN.toLowerCase().includes(keyword))
+    );
+
+    setFoundMovies(foundMovies);
+    localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
+
+    //render filtered movies
+    //if allMovies.length < 1 render 'no movies searched yet'
+    //if no movies found, render 'no movies found'
   }
 
   return (
