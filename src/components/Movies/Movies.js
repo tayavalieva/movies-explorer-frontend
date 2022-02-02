@@ -5,16 +5,16 @@ import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Preloader from "../Preloader/Preloader";
+
 import Navigation from "../Navigation/Navigation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
-import moviesList from "../../utils/moviesList";
+//import moviesList from "../../utils/moviesList";
 import * as moviesApi from "../../utils/MoviesApi";
 
 function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
-  const [foundMovies, setFoundMovies] = useState([]);
+  const [foundMoviesList, setFoundMoviesList] = useState([]);
 
   function handleMenuClick() {
     setSideModalOpen(true);
@@ -37,15 +37,15 @@ function Movies() {
   function getMovie(name) {
     const keyword = name.toLowerCase();
 
-    const foundMovies = allMovies.filter(
+    const foundMoviesList = allMovies.filter(
       (movie) =>
         (movie.nameRU != null &&
           movie.nameRU.toLowerCase().includes(keyword)) ||
         (movie.nameEN != null && movie.nameEN.toLowerCase().includes(keyword))
     );
 
-    setFoundMovies(foundMovies);
-    localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
+    setFoundMoviesList(foundMoviesList);
+    localStorage.setItem("foundMoviesList", JSON.stringify(foundMoviesList));
 
     //render filtered movies
     //if allMovies.length < 1 render 'no movies searched yet'
@@ -61,9 +61,7 @@ function Movies() {
         <div className="movies-container">
           <SearchForm onGetMovie={getMovie} />
           <FilterCheckbox />
-          <Preloader />
-          <MoviesCardList movies={moviesList} isSavedMoviesList={false} />
-          <button className="movies__more-button">Ещё</button>
+          <MoviesCardList movies={foundMoviesList} isSavedMoviesList={false} />
         </div>
       </main>
       <Footer />
