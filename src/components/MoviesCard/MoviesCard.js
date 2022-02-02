@@ -1,5 +1,6 @@
 import "./MoviesCard.css";
 import React, { useState } from "react";
+import { BASE_URL } from "../../utils/constants";
 //import savedMoviesList from "../../utils/savedMoviesList";
 
 function MoviesCard({ movie, isSavedMoviesList }) {
@@ -18,9 +19,15 @@ function MoviesCard({ movie, isSavedMoviesList }) {
     setIsSaved(!isSaved);
   }
 
+  const imgURL = BASE_URL.concat("/", movie.image.url);
+
+  console.log(imgURL);
+
   return (
     <li className="card">
-      <img src={movie.image} alt={movie.nameRU} className="card__img"></img>
+      <div className="card__img-container">
+        <img src={imgURL} alt={movie.nameRU} className="card__img"></img>
+      </div>
       <div className="card__caption">
         <button
           className={buttonClassName}

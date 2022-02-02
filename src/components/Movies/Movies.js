@@ -14,7 +14,7 @@ function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [foundMoviesList, setFoundMoviesList] = useState([]);
-
+  console.log(foundMoviesList);
   function handleMenuClick() {
     setSideModalOpen(true);
   }
