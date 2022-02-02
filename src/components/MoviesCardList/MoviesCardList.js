@@ -7,8 +7,8 @@ function MoviesCardList(props) {
     <section className="card-list__container">
       <Preloader />
       <ul className="card-list">
-        {props.movies.length < 1 ? (
-          <p className="card-list__message">Фильмы не найдены</p>
+        {props.error ? (
+          <p className="card-list__message">{props.error}</p>
         ) : (
           props.movies.map((movie) => (
             <MoviesCard

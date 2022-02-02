@@ -14,7 +14,11 @@ function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [foundMoviesList, setFoundMoviesList] = useState([]);
-  console.log(foundMoviesList);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  //console.log(foundMoviesList);
+  console.log(localStorage.getItem("foundMoviesList").length);
+
   function handleMenuClick() {
     setSideModalOpen(true);
   }
@@ -30,7 +34,12 @@ function Movies() {
         setAllMovies(allMovies);
         localStorage.setItem("allMovies", JSON.stringify(allMovies));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+      });
   }, []);
 
   function getMovie(name) {
@@ -42,13 +51,13 @@ function Movies() {
           movie.nameRU.toLowerCase().includes(keyword)) ||
         (movie.nameEN != null && movie.nameEN.toLowerCase().includes(keyword))
     );
-
+    if (foundMoviesList.length < 1) {
+      setErrorMessage("Ничего не найдено");
+    }
     setFoundMoviesList(foundMoviesList);
     localStorage.setItem("foundMoviesList", JSON.stringify(foundMoviesList));
 
     //render filtered movies
-    //if allMovies.length < 1 render 'no movies searched yet'
-    //if no movies found, render 'no movies found'
   }
 
   return (
@@ -60,7 +69,11 @@ function Movies() {
         <div className="movies-container">
           <SearchForm onGetMovie={getMovie} />
           <FilterCheckbox />
-          <MoviesCardList movies={foundMoviesList} isSavedMoviesList={false} />
+          <MoviesCardList
+            movies={foundMoviesList}
+            error={errorMessage}
+            isSavedMoviesList={false}
+          />
         </div>
       </main>
       <Footer />
