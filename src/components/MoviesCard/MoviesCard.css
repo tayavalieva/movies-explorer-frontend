@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  color: inherit;
 }
 
 .card__img-container {
@@ -41,6 +42,7 @@
 .card__title {
   margin: 0;
   padding: 0;
+  max-width: 272px;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
@@ -55,6 +57,7 @@
   font-weight: normal;
   font-size: 11px;
   line-height: 10px;
+  max-height: 18px;
 }
 
 .card__save-button {
@@ -141,6 +144,10 @@
     height: 190px;
   }
 
+  .card__title {
+    max-width: 251px;
+  }
+
   /* .card__img {
     width: 339px;
     height: 190px;
@@ -174,6 +181,10 @@
     width: 300px;
     height: 168px;
   } */
+
+  .card__title {
+    max-width: 212px;
+  }
 
   .card__caption {
     padding-top: 16px;

@@ -19,9 +19,13 @@ function MoviesCard({ movie, isSavedMoviesList }) {
     setIsSaved(!isSaved);
   }
 
-  const imgURL = BASE_URL.concat("/", movie.image.url);
+  function calculateDuration(min) {
+    return `${Math.floor(min / 60)}ч ${min % 60}м`;
+  }
 
-  console.log(imgURL);
+  const movieName = movie.nameRU;
+  const movieImgURL = BASE_URL.concat("/", movie.image.url);
+  const movieDuration = calculateDuration(movie.duration);
 
   return (
     <li className="card">
@@ -32,7 +36,7 @@ function MoviesCard({ movie, isSavedMoviesList }) {
         rel="noreferrer"
       >
         <div className="card__img-container">
-          <img src={imgURL} alt={movie.nameRU} className="card__img"></img>
+          <img src={movieImgURL} alt={movieName} className="card__img"></img>
         </div>
         <div className="card__caption">
           <button
@@ -42,8 +46,8 @@ function MoviesCard({ movie, isSavedMoviesList }) {
           >
             {isSavedMoviesList ? "" : isSaved ? "" : "Сохранить"}
           </button>
-          <h2 className="card__title">{movie.nameRU}</h2>
-          <p className="card__info">1ч 17м</p>
+          <h2 className="card__title">{movieName}</h2>
+          <p className="card__info">{movieDuration}</p>
         </div>
       </a>
     </li>
