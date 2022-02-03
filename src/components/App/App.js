@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import api from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../Main/Main";
@@ -15,6 +16,13 @@ import ModalSidebar from "../ModalSidebar/ModalSidebar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(isLoggedIn);
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+  });
+
+  console.log(currentUser);
 
   const history = useHistory();
 
@@ -29,9 +37,20 @@ function App() {
       });
   }
 
+  React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((userData) => {
+        setCurrentUser(userData.data);
+      })
+      .catch((error) => console.log("Render error:", error));
+  }, [isLoggedIn]);
+
+  //check if logged in
+
   const tokenCheck = () => {
     auth
-      .getUserContent()
+      .getUser()
       .then((res) => {
         if (res) {
           setIsLoggedIn(true);
@@ -40,6 +59,8 @@ function App() {
       })
       .catch((error) => console.log("Render error:", error));
   };
+
+  React.useEffect(tokenCheck, [isLoggedIn]);
 
   function handleLogin(email, password) {
     auth
@@ -66,18 +87,21 @@ function App() {
               exact
               path="/movies"
               component={Movies}
+              isLoggedIn={isLoggedIn}
             ></ProtectedRoute>
 
             <ProtectedRoute
               exact
               path="/saved-movies"
               component={SavedMovies}
+              isLoggedIn={isLoggedIn}
             ></ProtectedRoute>
 
             <ProtectedRoute
               exact
               path="/profile"
               component={Profile}
+              isLoggedIn={isLoggedIn}
             ></ProtectedRoute>
 
             <Route path="*">
