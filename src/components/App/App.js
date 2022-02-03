@@ -18,7 +18,7 @@ function App() {
 
   const history = useHistory();
 
-  function onRegister(name, email, password) {
+  function handleRegister(name, email, password) {
     auth
       .register(name, email, password)
       .then(() => {
@@ -29,16 +29,35 @@ function App() {
       });
   }
 
+  const tokenCheck = () => {
+    auth
+      .getUserContent()
+      .then((res) => {
+        if (res) {
+          setIsLoggedIn(true);
+          history.push("/movies");
+        }
+      })
+      .catch((error) => console.log("Render error:", error));
+  };
+
+  function handleLogin(email, password) {
+    auth
+      .authorize(email, password)
+      .then(tokenCheck())
+      .catch((error) => console.log("Render error:", error));
+  }
+
   return (
     <div className="page">
       <div className="page__container">
         <div className="App">
           <Switch>
             <Route exact path="/signin">
-              <Login />
+              <Login onLogin={handleLogin} />
             </Route>
             <Route exact path="/signup">
-              <Register onRegister={onRegister} />
+              <Register onRegister={handleRegister} />
             </Route>
 
             <ProtectedRoute exact path="/" component={Main}></ProtectedRoute>
