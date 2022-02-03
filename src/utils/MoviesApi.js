@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";
+const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
 
 const headers = {
   Accept: "application/json",
@@ -13,7 +13,7 @@ const handlelResponse = (res) => {
 };
 
 export const getAllMovies = () => {
-  return fetch(`${BASE_URL}`, {
+  return fetch(`${MOVIES_URL}`, {
     method: "GET",
     headers: headers,
   }).then((res) => {

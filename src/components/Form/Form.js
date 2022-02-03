@@ -5,7 +5,7 @@ import Logo from "../Logo/Logo";
 
 function Form(props) {
   return (
-    <form className="form">
+    <form className="form" onSubmit={props.onSubmit}>
       <Logo />
       <h2 className="form__title">{props.title}</h2>
       <fieldset className="form__input-container">{props.children}</fieldset>

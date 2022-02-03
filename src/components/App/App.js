@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -15,6 +16,19 @@ import ModalSidebar from "../ModalSidebar/ModalSidebar";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const history = useHistory();
+
+  function onRegister(name, email, password) {
+    auth
+      .register(name, email, password)
+      .then(() => {
+        history.push("signin");
+      })
+      .catch((error) => {
+        console.log("Render error:", error);
+      });
+  }
+
   return (
     <div className="page">
       <div className="page__container">
@@ -24,7 +38,7 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/signup">
-              <Register />
+              <Register onRegister={onRegister} />
             </Route>
 
             <ProtectedRoute exact path="/" component={Main}></ProtectedRoute>
