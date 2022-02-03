@@ -70,48 +70,50 @@ function App() {
   }
 
   return (
-    <div className="page">
-      <div className="page__container">
-        <div className="App">
-          <Switch>
-            <Route exact path="/signin">
-              <Login onLogin={handleLogin} />
-            </Route>
-            <Route exact path="/signup">
-              <Register onRegister={handleRegister} />
-            </Route>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className="page__container">
+          <div className="App">
+            <Switch>
+              <Route exact path="/signin">
+                <Login onLogin={handleLogin} />
+              </Route>
+              <Route exact path="/signup">
+                <Register onRegister={handleRegister} />
+              </Route>
 
-            <ProtectedRoute exact path="/" component={Main}></ProtectedRoute>
+              <ProtectedRoute exact path="/" component={Main}></ProtectedRoute>
 
-            <ProtectedRoute
-              exact
-              path="/movies"
-              component={Movies}
-              isLoggedIn={isLoggedIn}
-            ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/movies"
+                component={Movies}
+                isLoggedIn={isLoggedIn}
+              ></ProtectedRoute>
 
-            <ProtectedRoute
-              exact
-              path="/saved-movies"
-              component={SavedMovies}
-              isLoggedIn={isLoggedIn}
-            ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/saved-movies"
+                component={SavedMovies}
+                isLoggedIn={isLoggedIn}
+              ></ProtectedRoute>
 
-            <ProtectedRoute
-              exact
-              path="/profile"
-              component={Profile}
-              isLoggedIn={isLoggedIn}
-            ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/profile"
+                component={Profile}
+                isLoggedIn={isLoggedIn}
+              ></ProtectedRoute>
 
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          <ModalSidebar />
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+            <ModalSidebar />
+          </div>
         </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

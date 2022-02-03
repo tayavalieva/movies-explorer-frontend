@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./SavedMovies.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -8,9 +8,11 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import Navigation from "../Navigation/Navigation";
 import savedMoviesList from "../../utils/savedMoviesList";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function SavedMovies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
+  const currentUser = React.useContext(CurrentUserContext);
 
   function handleMenuClick() {
     setSideModalOpen(true);

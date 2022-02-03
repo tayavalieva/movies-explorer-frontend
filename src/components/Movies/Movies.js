@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Navigation from "../Navigation/Navigation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import * as moviesApi from "../../utils/MoviesApi";
@@ -15,6 +15,8 @@ function Movies() {
   const [allMovies, setAllMovies] = useState([]);
   const [foundMoviesList, setFoundMoviesList] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const currentUser = React.useContext(CurrentUserContext);
 
   //console.log(foundMoviesList);
   console.log(localStorage.getItem("foundMoviesList"));
