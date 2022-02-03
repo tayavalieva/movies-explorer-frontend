@@ -17,7 +17,7 @@ function Movies() {
   const [errorMessage, setErrorMessage] = useState("");
 
   //console.log(foundMoviesList);
-  console.log(localStorage.getItem("foundMoviesList").length);
+  console.log(localStorage.getItem("foundMoviesList"));
 
   function handleMenuClick() {
     setSideModalOpen(true);
@@ -59,6 +59,9 @@ function Movies() {
 
     //render filtered movies
   }
+
+  // Как только запрос сделан, данные передаются в стейт-переменную и обновляются в локальном хранилище,
+  // а блок появляется. Для отрисовки данных воспользуйтесь хуком.
 
   return (
     <section className="movies">
