@@ -22,15 +22,14 @@ function App() {
     email: "",
   });
 
-  console.log(currentUser);
-
   const history = useHistory();
 
   function handleRegister(name, email, password) {
     auth
       .register(name, email, password)
       .then(() => {
-        history.push("signin");
+        history.push("movies");
+        setIsLoggedIn(true);
       })
       .catch((error) => {
         console.log("Render error:", error);
@@ -47,7 +46,6 @@ function App() {
   }, [isLoggedIn]);
 
   //check if logged in
-
   const tokenCheck = () => {
     auth
       .getUser()
