@@ -15,26 +15,15 @@ import NotFound from "../NotFound/NotFound";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(isLoggedIn);
   const [currentUser, setCurrentUser] = useState({
     name: "",
     email: "",
   });
 
-  const history = useHistory();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(isLoggedIn);
 
-  function handleRegister(name, email, password) {
-    auth
-      .register(name, email, password)
-      .then(() => {
-        history.push("movies");
-        setIsLoggedIn(true);
-      })
-      .catch((error) => {
-        console.log("Render error:", error);
-      });
-  }
+  const history = useHistory();
 
   React.useEffect(() => {
     api
@@ -64,7 +53,20 @@ function App() {
     auth
       .authorize(email, password)
       .then(tokenCheck())
+      .then(history.push("/movies"))
       .catch((error) => console.log("Render error:", error));
+  }
+
+  function handleRegister(name, email, password) {
+    auth
+      .register(name, email, password)
+      .then(() => {
+        history.push("/movies");
+        //need to login in after the registration
+      })
+      .catch((error) => {
+        console.log("Render error:", error);
+      });
   }
 
   return (
