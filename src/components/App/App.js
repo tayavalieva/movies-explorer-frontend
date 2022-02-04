@@ -70,6 +70,17 @@ function App() {
       });
   }
 
+  function handleSignOut() {
+    auth
+      .signOut()
+      .then(() => setIsLoggedIn(false))
+      .catch((error) => {
+        console.log("Render error:", error);
+      });
+  }
+
+  console.log(isLoggedIn);
+
   function handleUpdateUser(userData) {
     mainApi
       .setNewUserInfo(userData)
@@ -114,6 +125,7 @@ function App() {
                 component={Profile}
                 isLoggedIn={isLoggedIn}
                 onUpdateUser={handleUpdateUser}
+                onSignOut={handleSignOut}
               ></ProtectedRoute>
 
               <Route path="*">

@@ -31,6 +31,13 @@ export const getUser = () => {
   }).then(_handlelResponse);
 };
 
+export const signOut = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "DELETE",
+    credentials: "include",
+  }).then(_handlelResponse);
+};
+
 function _handlelResponse(res) {
   if (!res.ok) {
     return Promise.reject(`Error: ${res.status}`);

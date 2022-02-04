@@ -77,13 +77,14 @@
   background-color: #e8e8e8;
 }
 
-.profile__exit-btn {
+.profile__exit {
   width: 410px;
   margin: 16px 0 0;
   padding: 0;
   border: none;
   background-color: transparent;
   color: #ee3465;
+  text-decoration: none;
   font-size: 13px;
   line-height: 16px;
   font-weight: 500;
@@ -91,7 +92,7 @@
   transition: background-color 0.3s linear;
 }
 
-.profile__exit-btn:hover {
+.profile__exit:hover {
   cursor: pointer;
   background-color: #e8e8e8;
 }

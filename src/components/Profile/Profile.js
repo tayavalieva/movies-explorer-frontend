@@ -1,10 +1,11 @@
 import "./Profile.css";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ onUpdateUser }) {
+function Profile({ onUpdateUser, onSignOut }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
@@ -61,13 +62,13 @@ function Profile({ onUpdateUser }) {
                 name="email"
               ></input>
             </div>
-            <button className="profile__form-submit-btn" tupe="submit">
+            <button className="profile__form-submit-btn" type="submit">
               Редактировать
             </button>
           </form>
-          <button type="button" className="profile__exit-btn">
+          <Link to="/signin" onClick={onSignOut} className="profile__exit">
             Выйти из аккаунта
-          </button>
+          </Link>
         </div>
       </main>
     </section>
