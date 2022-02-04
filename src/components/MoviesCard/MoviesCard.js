@@ -1,12 +1,37 @@
 import "./MoviesCard.css";
 import React, { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
+
 //import savedMoviesList from "../../utils/savedMoviesList";
 
-function MoviesCard({ movie, isSavedMoviesList }) {
+function MoviesCard({ movie, isSavedMoviesList, onSaveMovie }) {
   //const isSaved = savedMoviesList.some((m) => m.id === movie.id);
   const [isSaved, setIsSaved] = useState(false);
 
+  // function toggleSaveClick() {
+  //   setIsSaved(!isSaved);
+  // }
+
+  function handleSaveClick() {
+    onSaveMovie({
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: `${BASE_URL}${movie.image ? movie.image.url : ""}`,
+      trailer: movie.trailerLink,
+      thumbnail: `${BASE_URL}${
+        movie.image.formats.thumbnail ? movie.image.formats.thumbnail.url : ""
+      }`,
+      movieId: movie.id,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+      isSaved: movie.isSaved,
+    });
+  }
+
+  //show delete button
   const buttonClassName = `${
     isSavedMoviesList
       ? "card__delete-button"
@@ -14,10 +39,6 @@ function MoviesCard({ movie, isSavedMoviesList }) {
       ? "card__save-button_saved"
       : "card__save-button"
   }`;
-
-  function toggleSaveClick() {
-    setIsSaved(!isSaved);
-  }
 
   function calculateDuration(min) {
     return `${Math.floor(min / 60)}ч ${min % 60}м`;
@@ -43,7 +64,7 @@ function MoviesCard({ movie, isSavedMoviesList }) {
         <button
           className={buttonClassName}
           type="button"
-          onClick={toggleSaveClick}
+          onClick={handleSaveClick}
         >
           {isSavedMoviesList ? "" : isSaved ? "" : "Сохранить"}
         </button>

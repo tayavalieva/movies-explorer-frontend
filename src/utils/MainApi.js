@@ -32,6 +32,27 @@ class Api {
       }),
     }).then(this._handlelResponse);
   }
+
+  saveMovie(movie) {
+    return fetch(`${this._url}/movies`, {
+      method: "POST",
+      credentials: "include",
+      headers: this._headers,
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image,
+        trailer: movie.trailer,
+        thumbnail: movie.thumbnail,
+        movieId: movie.movieId,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      }),
+    }).then(this._handlelResponse);
+  }
 }
 
 const mainApi = new Api({

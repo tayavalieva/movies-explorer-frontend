@@ -9,11 +9,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Navigation from "../Navigation/Navigation";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import * as moviesApi from "../../utils/MoviesApi";
+import mainApi from "../../utils/MainApi";
 
 function Movies() {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [foundMoviesList, setFoundMoviesList] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -65,6 +68,25 @@ function Movies() {
   // Как только запрос сделан, данные передаются в стейт-переменную и обновляются в локальном хранилище,
   // а блок появляется. Для отрисовки данных воспользуйтесь хуком.
 
+  function handleSaveMovie(movie) {
+    mainApi
+      .saveMovie(movie)
+      .then((newMovie) => {
+        if (!newMovie) {
+          throw new Error("Произошла ошибка");
+        } else {
+          setSavedMovies(newMovie);
+          localStorage.setItem(
+            "savedMovies",
+            JSON.stringify((newMovie = [newMovie.movie, ...savedMovies]))
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(`Render error: ${err}`);
+      });
+  }
+
   return (
     <section className="movies">
       <Header>
@@ -78,6 +100,7 @@ function Movies() {
             movies={foundMoviesList}
             error={errorMessage}
             isSavedMoviesList={false}
+            onSaveMovie={handleSaveMovie}
           />
         </div>
       </main>
