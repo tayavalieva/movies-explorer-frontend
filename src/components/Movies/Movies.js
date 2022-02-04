@@ -11,18 +11,12 @@ import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import * as moviesApi from "../../utils/MoviesApi";
 import mainApi from "../../utils/MainApi";
 
-function Movies() {
+function Movies(props) {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
-  const [allMovies, setAllMovies] = useState([]);
-  const [foundMoviesList, setFoundMoviesList] = useState([]);
-  const [savedMovies, setSavedMovies] = useState([]);
 
-  const [errorMessage, setErrorMessage] = useState("");
+  //const [filteredShortMovies, setFilteredShortMovies] = useState([]);
 
   const currentUser = React.useContext(CurrentUserContext);
-
-  //console.log(foundMoviesList);
-  //console.log(localStorage.getItem("foundMoviesList"));
 
   function handleMenuClick() {
     setSideModalOpen(true);
@@ -31,61 +25,11 @@ function Movies() {
   function closeSideBar() {
     setSideModalOpen(false);
   }
-
-  useEffect(() => {
-    moviesApi
-      .getAllMovies()
-      .then((allMovies) => {
-        setAllMovies(allMovies);
-        localStorage.setItem("allMovies", JSON.stringify(allMovies));
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMessage(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-      });
-  }, []);
-
-  function getMovie(name) {
-    const keyword = name.toLowerCase();
-
-    const foundMoviesList = allMovies.filter(
-      (movie) =>
-        (movie.nameRU != null &&
-          movie.nameRU.toLowerCase().includes(keyword)) ||
-        (movie.nameEN != null && movie.nameEN.toLowerCase().includes(keyword))
-    );
-    if (foundMoviesList.length < 1) {
-      setErrorMessage("Ничего не найдено");
-    }
-    setFoundMoviesList(foundMoviesList);
-    localStorage.setItem("foundMoviesList", JSON.stringify(foundMoviesList));
-
-    //render filtered movies
-  }
-
   // Как только запрос сделан, данные передаются в стейт-переменную и обновляются в локальном хранилище,
   // а блок появляется. Для отрисовки данных воспользуйтесь хуком.
-
-  function handleSaveMovie(movie) {
-    mainApi
-      .saveMovie(movie)
-      .then((newMovie) => {
-        if (!newMovie) {
-          throw new Error("Произошла ошибка");
-        } else {
-          setSavedMovies(newMovie);
-          localStorage.setItem(
-            "savedMovies",
-            JSON.stringify((newMovie = [newMovie.movie, ...savedMovies]))
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(`Render error: ${err}`);
-      });
-  }
+  //Чтобы получить данные о сохранённых карточках, отправляйте GET-запрос к /movies нашего API.
+  //При запросе к серверу за фильмами на странице «Фильмы» вы получаете сразу все данные и сохраняете их.
+  //При этом вам потребуется отсортировать результат по ключевому слову, которое ввёл пользователь, и чекбоксу для короткометражных фильмов:
 
   return (
     <section className="movies">
@@ -94,13 +38,14 @@ function Movies() {
       </Header>
       <main>
         <div className="movies-container">
-          <SearchForm onGetMovie={getMovie} />
+          <SearchForm onSearchMovie={props.onSearchMovie} />
           <FilterCheckbox />
           <MoviesCardList
-            movies={foundMoviesList}
-            error={errorMessage}
+            movies={props.searchedMovies}
+            savedMovies={props.savedMovies}
+            error={props.moviesPageMessage}
             isSavedMoviesList={false}
-            onSaveMovie={handleSaveMovie}
+            onSaveMovie={props.onSaveMovie}
           />
         </div>
       </main>

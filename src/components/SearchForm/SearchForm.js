@@ -18,7 +18,7 @@ function SearchForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onGetMovie(searchedMovie);
+    props.onSearchMovie(searchedMovie);
     resetInput();
     setError("");
   }
