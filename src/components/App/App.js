@@ -25,6 +25,8 @@ function App() {
 
   const history = useHistory();
 
+  //check user info on logged in status change
+
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -52,8 +54,9 @@ function App() {
   function handleLogin(email, password) {
     auth
       .authorize(email, password)
-      .then(tokenCheck())
-      .then(history.push("/movies"))
+      .then(() => {
+        tokenCheck();
+      })
       .catch((error) => console.log("Render error:", error));
   }
 
@@ -61,8 +64,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        history.push("/movies");
-        //need to login in after the registration
+        tokenCheck();
       })
       .catch((error) => {
         console.log("Render error:", error);

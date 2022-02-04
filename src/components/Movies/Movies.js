@@ -19,7 +19,7 @@ function Movies() {
   const currentUser = React.useContext(CurrentUserContext);
 
   //console.log(foundMoviesList);
-  console.log(localStorage.getItem("foundMoviesList"));
+  //console.log(localStorage.getItem("foundMoviesList"));
 
   function handleMenuClick() {
     setSideModalOpen(true);
