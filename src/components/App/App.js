@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import api from "../../utils/MainApi";
+import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../Main/Main";
@@ -21,14 +21,13 @@ function App() {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(isLoggedIn);
 
   const history = useHistory();
 
   //check user info on logged in status change
 
   React.useEffect(() => {
-    api
+    mainApi
       .getUserInfo()
       .then((userData) => {
         setCurrentUser(userData.data);
@@ -71,6 +70,15 @@ function App() {
       });
   }
 
+  function handleUpdateUser(userData) {
+    mainApi
+      .setNewUserInfo(userData)
+      .then((userData) => {
+        setCurrentUser(userData.data);
+      })
+      .catch((error) => console.log("Render error:", error));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -105,6 +113,7 @@ function App() {
                 path="/profile"
                 component={Profile}
                 isLoggedIn={isLoggedIn}
+                onUpdateUser={handleUpdateUser}
               ></ProtectedRoute>
 
               <Route path="*">

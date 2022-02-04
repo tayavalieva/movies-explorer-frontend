@@ -34,7 +34,7 @@ class Api {
   }
 }
 
-const api = new Api({
+const mainApi = new Api({
   baseUrl: BASE_URL,
   headers: {
     Accept: "application/json",
@@ -42,4 +42,4 @@ const api = new Api({
   },
 });
 
-export default api;
+export default mainApi;

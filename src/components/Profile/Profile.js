@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile() {
+function Profile({ onUpdateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
@@ -23,6 +23,14 @@ function Profile() {
     setEmail(currentUser.email);
   }, [currentUser]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateUser({
+      name,
+      email,
+    });
+  }
+
   return (
     <section className="profile">
       <Header>
@@ -31,7 +39,7 @@ function Profile() {
       <main>
         <div className="profile-container">
           <h2 className="profile__greeting">Привет, {currentUser.name}!</h2>
-          <form className="profile__form-container">
+          <form className="profile__form-container" onSubmit={handleSubmit}>
             <div className="profile__input-container">
               <p className="profile__input-label-name">Имя</p>
               <input
