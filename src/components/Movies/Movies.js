@@ -44,8 +44,8 @@ function Movies(props) {
             movies={props.searchedMovies}
             savedMovies={props.savedMovies}
             error={props.moviesPageMessage}
-            isSavedMoviesList={false}
             onSaveMovie={props.onSaveMovie}
+            isSavedMoviesPage={props.isSavedMoviesPage}
           />
         </div>
       </main>

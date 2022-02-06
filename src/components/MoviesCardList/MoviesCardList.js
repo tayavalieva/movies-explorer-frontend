@@ -40,12 +40,12 @@ function MoviesCardList(props) {
                 movie={movie}
                 key={movie.id}
                 onSaveMovie={props.onSaveMovie}
-                isSavedMoviesList={props.isSavedMoviesList}
+                isSavedMoviesPage={props.isSavedMoviesPage}
               />
             ))
         )}
       </ul>
-      {props.movies.length > 0 && (
+      {props.movies.length > 0 && !props.isSavedMoviesPage && (
         <button className="card-list__more" onClick={handleMoreClick}>
           Ещё
         </button>

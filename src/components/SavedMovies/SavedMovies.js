@@ -33,7 +33,10 @@ function SavedMovies(props) {
         <div className="saved-movies-container">
           <SearchForm />
           <FilterCheckbox />
-          <MoviesCardList movies={props.savedMovies} />
+          <MoviesCardList
+            movies={props.savedMovies}
+            isSavedMoviesPage={props.isSavedMoviesPage}
+          />
         </div>
       </main>
       <Footer />

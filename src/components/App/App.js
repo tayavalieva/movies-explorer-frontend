@@ -219,6 +219,7 @@ function App() {
                 onSaveMovie={handleSaveMovie}
                 moviesPageMessage={moviesPageMessage}
                 emptyListMessage={emptySearchedMoviesListMessage}
+                isSavedMoviesPage={false}
               ></ProtectedRoute>
 
               <ProtectedRoute
@@ -228,6 +229,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 savedMovies={savedMovies}
                 emptyListMessage={emptySavedMoviesListMessage}
+                isSavedMoviesPage={true}
               ></ProtectedRoute>
 
               <ProtectedRoute
