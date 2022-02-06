@@ -53,6 +53,14 @@ class Api {
       }),
     }).then(this._handlelResponse);
   }
+
+  getSavedMovies() {
+    return fetch(`${this._url}/movies`, {
+      method: "GET",
+      credentials: "include",
+      headers: this._headers,
+    }).then(this._handlelResponse);
+  }
 }
 
 const mainApi = new Api({

@@ -43,7 +43,7 @@ function App() {
       .then((userData) => {
         setCurrentUser(userData.data);
       })
-      .catch((error) => console.log("Render error:", error));
+      .catch((error) => console.log("get user error:", error));
   }, [isLoggedIn]);
 
   //check if logged in
@@ -59,6 +59,7 @@ function App() {
       .catch((error) => console.log("Render error:", error));
   };
 
+  // double token check
   React.useEffect(tokenCheck, [isLoggedIn]);
 
   function handleLogin(email, password) {
@@ -67,7 +68,7 @@ function App() {
       .then(() => {
         tokenCheck();
       })
-      .catch((error) => console.log("Render error:", error));
+      .catch((error) => console.log("login error:", error));
   }
 
   function handleRegister(name, email, password) {
@@ -77,18 +78,13 @@ function App() {
         tokenCheck();
       })
       .catch((error) => {
-        console.log("Render error:", error);
+        console.log("Registration error:", error);
       });
   }
 
-  function resetStorage() {
+  function resetLocalStorage() {
     localStorage.removeItem("allMovies");
     localStorage.removeItem("searchedMovies");
-    localStorage.removeItem("savedMovies");
-    setAllMovies([]);
-    setSearchedMovies([]);
-    setSavedMovies([]);
-    setMoviesPageMessage("");
   }
 
   function handleSignOut() {
@@ -96,10 +92,10 @@ function App() {
       .signOut()
       .then(() => {
         setIsLoggedIn(false);
-        resetStorage();
+        resetLocalStorage();
       })
       .catch((error) => {
-        console.log("Render error:", error);
+        console.log("Sign out error:", error);
       });
   }
 
@@ -109,10 +105,10 @@ function App() {
       .then((userData) => {
         setCurrentUser(userData.data);
       })
-      .catch((error) => console.log("Render error:", error));
+      .catch((error) => console.log("User update error:", error));
   }
 
-  //get all movies and save them to the local storage when a user logs in
+  //get all movies and save them to the state and to the local storage when a user logs in
 
   useEffect(() => {
     moviesApi
@@ -129,7 +125,31 @@ function App() {
       });
   }, [currentUser]);
 
-  console.log(localStorage.getItem("allMovies"), "from local storage from app");
+  //get user's movies from my server and write them to state
+  // when user changes (opens page for the fist time)
+
+  useEffect(() => {
+    mainApi
+      .getSavedMovies()
+      .then((savedMovies) => {
+        //filter all savedMovies by user id
+        // do filter on server
+        if (currentUser != null) {
+          const userSavedMovies = savedMovies.data.filter(
+            (movie) => movie.owner === currentUser._id
+          );
+          setSavedMovies(userSavedMovies);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [currentUser]);
+
+  console.log(currentUser._id);
+
+  const emptySavedMoviesListMessage = "Нет сохранненных фильмов";
+  const emptySearchedMoviesListMessage = "Вы еще ничего не искали";
 
   //find movies by users' keyword and save them to searchedMovies and local storage
   function searchMovie(name) {
@@ -147,21 +167,22 @@ function App() {
     localStorage.setItem("searchedMovies", JSON.stringify(searchedMovies));
   }
 
-  //add movies to user's save movies list and local storage
+  //add movies to user's save movies list
+  //TO DO a toggle save or delete movie function and set it as an attribute to Movies and Save movies (instead of handleSaveMovie)
 
   function handleSaveMovie(movie) {
     mainApi
       .saveMovie(movie)
       .then((newSavedMovie) => {
-        console.log(newSavedMovie);
-        if (!newSavedMovie) {
+        console.log(newSavedMovie.data);
+        if (!newSavedMovie.data) {
           throw new Error("Произошла ошибка");
         } else {
-          setSavedMovies(newSavedMovie);
+          setSavedMovies([newSavedMovie.data, ...savedMovies]);
           localStorage.setItem(
             "savedMovies",
             JSON.stringify(
-              (newSavedMovie = [newSavedMovie.movie, ...savedMovies])
+              (newSavedMovie = [newSavedMovie.data, ...savedMovies])
             )
           );
         }
@@ -197,6 +218,7 @@ function App() {
                 onSearchMovie={searchMovie}
                 onSaveMovie={handleSaveMovie}
                 moviesPageMessage={moviesPageMessage}
+                emptyListMessage={emptySearchedMoviesListMessage}
               ></ProtectedRoute>
 
               <ProtectedRoute
@@ -204,6 +226,8 @@ function App() {
                 path="/saved-movies"
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
+                savedMovies={savedMovies}
+                emptyListMessage={emptySavedMoviesListMessage}
               ></ProtectedRoute>
 
               <ProtectedRoute

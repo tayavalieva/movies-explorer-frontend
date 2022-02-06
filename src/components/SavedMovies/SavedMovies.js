@@ -7,10 +7,9 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
 import Navigation from "../Navigation/Navigation";
-import savedMoviesList from "../../utils/savedMoviesList";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function SavedMovies() {
+function SavedMovies(props) {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -22,6 +21,9 @@ function SavedMovies() {
     setSideModalOpen(false);
   }
 
+  console.log(props.savedMovies);
+  //if state with saved movies -пустой, то запрос на MainApi, результат запроса записать в local storage
+
   return (
     <section className="saved-movies">
       <Header>
@@ -31,7 +33,7 @@ function SavedMovies() {
         <div className="saved-movies-container">
           <SearchForm />
           <FilterCheckbox />
-          <MoviesCardList movies={savedMoviesList} isSavedMoviesList={true} />
+          <MoviesCardList movies={props.savedMovies} />
         </div>
       </main>
       <Footer />
