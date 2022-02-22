@@ -4,7 +4,7 @@ import { BASE_URL } from "../../utils/constants";
 
 //import savedMoviesList from "../../utils/savedMoviesList";
 
-function MoviesCard({ movie, isSavedMoviesList, onSaveMovie }) {
+function MoviesCard({ movie, isSavedMoviesPage, onSaveMovie }) {
   //const isSaved = savedMoviesList.some((m) => m.id === movie.id);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -33,7 +33,7 @@ function MoviesCard({ movie, isSavedMoviesList, onSaveMovie }) {
 
   //show delete button
   const buttonClassName = `${
-    isSavedMoviesList
+    isSavedMoviesPage
       ? "card__delete-button"
       : isSaved
       ? "card__save-button_saved"
@@ -57,7 +57,11 @@ function MoviesCard({ movie, isSavedMoviesList, onSaveMovie }) {
         rel="noreferrer"
       >
         <div className="card__img-container">
-          <img src={movieImgURL} alt={movieName} className="card__img"></img>
+          <img
+            src={isSavedMoviesPage ? movie.image : movieImgURL}
+            alt={movieName}
+            className="card__img"
+          ></img>
         </div>
       </a>
       <div className="card__caption">
@@ -66,7 +70,7 @@ function MoviesCard({ movie, isSavedMoviesList, onSaveMovie }) {
           type="button"
           onClick={handleSaveClick}
         >
-          {isSavedMoviesList ? "" : isSaved ? "" : "Сохранить"}
+          {isSavedMoviesPage ? "" : isSaved ? "" : "Сохранить"}
         </button>
         <h2 className="card__title">{movieName}</h2>
         <p className="card__info">{movieDuration}</p>
