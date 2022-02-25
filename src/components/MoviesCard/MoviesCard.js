@@ -2,15 +2,23 @@ import "./MoviesCard.css";
 import React, { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 
-//import savedMoviesList from "../../utils/savedMoviesList";
+function MoviesCard({ movie, savedMovies, isSavedMoviesPage, onSaveMovie }) {
+  const isSaved = savedMovies.some((m) => m.movieId === movie.id);
 
-function MoviesCard({ movie, isSavedMoviesPage, onSaveMovie }) {
-  //const isSaved = savedMoviesList.some((m) => m.id === movie.id);
-  const [isSaved, setIsSaved] = useState(false);
+  //const [isSaved, setIsSaved] = useState(false);
 
   // function toggleSaveClick() {
   //   setIsSaved(!isSaved);
   // }
+
+  //show delete button
+  const saveButtonClassName = `${
+    isSavedMoviesPage
+      ? "card__delete-button"
+      : isSaved
+      ? "card__save-button_saved"
+      : "card__save-button"
+  }`;
 
   function handleSaveClick() {
     onSaveMovie({
@@ -30,15 +38,6 @@ function MoviesCard({ movie, isSavedMoviesPage, onSaveMovie }) {
       isSaved: movie.isSaved,
     });
   }
-
-  //show delete button
-  const buttonClassName = `${
-    isSavedMoviesPage
-      ? "card__delete-button"
-      : isSaved
-      ? "card__save-button_saved"
-      : "card__save-button"
-  }`;
 
   function calculateDuration(min) {
     return `${Math.floor(min / 60)}ч ${min % 60}м`;
@@ -66,7 +65,7 @@ function MoviesCard({ movie, isSavedMoviesPage, onSaveMovie }) {
       </a>
       <div className="card__caption">
         <button
-          className={buttonClassName}
+          className={saveButtonClassName}
           type="button"
           onClick={handleSaveClick}
         >

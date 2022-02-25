@@ -38,6 +38,7 @@ function MoviesCardList(props) {
             .map((movie) => (
               <MoviesCard
                 movie={movie}
+                savedMovies={props.savedMovies}
                 key={movie.id}
                 onSaveMovie={props.onSaveMovie}
                 isSavedMoviesPage={props.isSavedMoviesPage}
