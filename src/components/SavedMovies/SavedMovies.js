@@ -20,8 +20,6 @@ function SavedMovies(props) {
   function closeSideBar() {
     setSideModalOpen(false);
   }
-
-  console.log(props.savedMovies);
   //if state with saved movies -пустой, то запрос на MainApi, результат запроса записать в local storage
 
   return (
@@ -35,6 +33,7 @@ function SavedMovies(props) {
           <FilterCheckbox />
           <MoviesCardList
             movies={props.savedMovies}
+            savedMovies={props.savedMovies}
             isSavedMoviesPage={props.isSavedMoviesPage}
           />
         </div>
