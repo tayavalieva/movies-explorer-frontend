@@ -186,7 +186,8 @@ function App() {
 
   //delete movie from user's saved movies list
   function handleDeleteMovie(movie) {
-    const currentMovie = savedMovies.find((m) => m.movieId === movie.id);
+    const movieId = movie.id || movie.movieId;
+    const currentMovie = savedMovies.find((m) => m.movieId === movieId);
     mainApi
       .deleteMovie(currentMovie._id)
       .then(() => {

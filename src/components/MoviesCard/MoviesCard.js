@@ -9,13 +9,9 @@ function MoviesCard({
   onSaveMovie,
   onDeleteMovie,
 }) {
-  const isSaved = savedMovies.some((m) => m.movieId === movie.id);
-
-  //const [isSaved, setIsSaved] = useState(false);
-
-  // function toggleSaveClick() {
-  //   setIsSaved(!isSaved);
-  // }
+  const isSaved = isSavedMoviesPage
+    ? true
+    : savedMovies.some((m) => m.movieId === movie.id);
 
   //show delete button
   const saveButtonClassName = `${

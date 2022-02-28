@@ -34,6 +34,7 @@ function SavedMovies(props) {
           <MoviesCardList
             movies={props.savedMovies}
             savedMovies={props.savedMovies}
+            onDeleteMovie={props.onDeleteMovie}
             isSavedMoviesPage={props.isSavedMoviesPage}
           />
         </div>
