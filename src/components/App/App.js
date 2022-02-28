@@ -128,12 +128,10 @@ function App() {
   //get user's movies from my server and write them to state
   // when user changes (opens page for the fist time)
 
-  useEffect(() => {
+  function updateSavedMovies() {
     mainApi
       .getSavedMovies()
       .then((savedMovies) => {
-        //filter all savedMovies by user id
-        // do filter on server
         if (currentUser != null) {
           const userSavedMovies = savedMovies.data.filter(
             (movie) => movie.owner === currentUser._id
@@ -144,9 +142,11 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [currentUser]);
+  }
 
-  console.log(currentUser._id);
+  useEffect(() => {
+    updateSavedMovies();
+  }, [currentUser]);
 
   const emptySavedMoviesListMessage = "Нет сохранненных фильмов";
   const emptySearchedMoviesListMessage = "Вы еще ничего не искали";
@@ -168,8 +168,6 @@ function App() {
   }
 
   //add movies to user's save movies list
-  //TO DO a toggle save or delete movie function and set it as an attribute to Movies and Save movies (instead of handleSaveMovie)
-
   function handleSaveMovie(movie) {
     mainApi
       .saveMovie(movie)
@@ -179,12 +177,6 @@ function App() {
           throw new Error("Произошла ошибка");
         } else {
           setSavedMovies([newSavedMovie.data, ...savedMovies]);
-          localStorage.setItem(
-            "savedMovies",
-            JSON.stringify(
-              (newSavedMovie = [newSavedMovie.data, ...savedMovies])
-            )
-          );
         }
       })
       .catch((err) => {
@@ -192,19 +184,13 @@ function App() {
       });
   }
 
+  //delete movie from user's saved movies list
   function handleDeleteMovie(movie) {
     const currentMovie = savedMovies.find((m) => m.movieId === movie.id);
     mainApi
       .deleteMovie(currentMovie._id)
       .then(() => {
-        mainApi.getSavedMovies().then((savedMovies) => {
-          if (currentUser != null) {
-            const userSavedMovies = savedMovies.data.filter(
-              (movie) => movie.owner === currentUser._id
-            );
-            setSavedMovies(userSavedMovies);
-          }
-        });
+        updateSavedMovies();
       })
       .catch((err) => {
         console.log(`Render error: ${err}`);
