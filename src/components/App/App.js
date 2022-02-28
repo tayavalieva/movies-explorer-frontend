@@ -152,8 +152,9 @@ function App() {
   const emptySearchedMoviesListMessage = "Вы еще ничего не искали";
 
   //find movies by users' keyword and save them to searchedMovies and local storage
-  function searchMovie(name) {
+  function searchMovie(name, isSavedMoviesPage) {
     const keyword = name.toLowerCase();
+    const moviesList = isSavedMoviesPage ? savedMovies : allMovies;
     const searchedMovies = allMovies.filter(
       (movie) =>
         (movie.nameRU != null &&
@@ -234,6 +235,7 @@ function App() {
                 path="/saved-movies"
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
+                onSearch={searchMovie}
                 savedMovies={savedMovies}
                 onDeleteMovie={handleDeleteMovie}
                 emptyListMessage={emptySavedMoviesListMessage}

@@ -29,7 +29,10 @@ function SavedMovies(props) {
       </Header>
       <main>
         <div className="saved-movies-container">
-          <SearchForm />
+          <SearchForm
+            onSearchMovie={props.onSearchMovie}
+            isSavedMoviesPage={props.isSavedMoviesPage}
+          />
           <FilterCheckbox />
           <MoviesCardList
             movies={props.savedMovies}
