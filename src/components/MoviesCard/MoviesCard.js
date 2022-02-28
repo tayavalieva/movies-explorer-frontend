@@ -2,7 +2,13 @@ import "./MoviesCard.css";
 import React, { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 
-function MoviesCard({ movie, savedMovies, isSavedMoviesPage, onSaveMovie }) {
+function MoviesCard({
+  movie,
+  savedMovies,
+  isSavedMoviesPage,
+  onSaveMovie,
+  onDeleteMovie,
+}) {
   const isSaved = savedMovies.some((m) => m.movieId === movie.id);
 
   //const [isSaved, setIsSaved] = useState(false);
@@ -21,22 +27,26 @@ function MoviesCard({ movie, savedMovies, isSavedMoviesPage, onSaveMovie }) {
   }`;
 
   function handleSaveClick() {
-    onSaveMovie({
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: `${BASE_URL}${movie.image ? movie.image.url : ""}`,
-      trailer: movie.trailerLink,
-      thumbnail: `${BASE_URL}${
-        movie.image.formats.thumbnail ? movie.image.formats.thumbnail.url : ""
-      }`,
-      movieId: movie.id,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      isSaved: movie.isSaved,
-    });
+    if (!isSaved) {
+      onSaveMovie({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${BASE_URL}${movie.image ? movie.image.url : ""}`,
+        trailer: movie.trailerLink,
+        thumbnail: `${BASE_URL}${
+          movie.image.formats.thumbnail ? movie.image.formats.thumbnail.url : ""
+        }`,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        isSaved: movie.isSaved,
+      });
+    } else {
+      onDeleteMovie(movie);
+    }
   }
 
   function calculateDuration(min) {

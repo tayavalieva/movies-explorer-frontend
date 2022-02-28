@@ -45,6 +45,7 @@ function Movies(props) {
             savedMovies={props.savedMovies}
             error={props.moviesPageMessage}
             onSaveMovie={props.onSaveMovie}
+            onDeleteMovie={props.onDeleteMovie}
             isSavedMoviesPage={props.isSavedMoviesPage}
           />
         </div>

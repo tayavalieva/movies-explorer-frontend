@@ -54,6 +54,15 @@ class Api {
     }).then(this._handlelResponse);
   }
 
+  deleteMovie(movieId) {
+    return fetch(`${this._url}${"/movies"}/${movieId}`, {
+      //fetch(`${this._url}/movies`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: this._headers,
+    }).then(this._handlelResponse);
+  }
+
   getSavedMovies() {
     return fetch(`${this._url}/movies`, {
       method: "GET",

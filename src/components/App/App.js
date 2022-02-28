@@ -192,6 +192,25 @@ function App() {
       });
   }
 
+  function handleDeleteMovie(movie) {
+    const currentMovie = savedMovies.find((m) => m.movieId === movie.id);
+    mainApi
+      .deleteMovie(currentMovie._id)
+      .then(() => {
+        mainApi.getSavedMovies().then((savedMovies) => {
+          if (currentUser != null) {
+            const userSavedMovies = savedMovies.data.filter(
+              (movie) => movie.owner === currentUser._id
+            );
+            setSavedMovies(userSavedMovies);
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(`Render error: ${err}`);
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -217,6 +236,7 @@ function App() {
                 savedMovies={savedMovies}
                 onSearchMovie={searchMovie}
                 onSaveMovie={handleSaveMovie}
+                onDeleteMovie={handleDeleteMovie}
                 moviesPageMessage={moviesPageMessage}
                 emptyListMessage={emptySearchedMoviesListMessage}
                 isSavedMoviesPage={false}
@@ -228,6 +248,7 @@ function App() {
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 savedMovies={savedMovies}
+                onDeleteMovie={handleDeleteMovie}
                 emptyListMessage={emptySavedMoviesListMessage}
                 isSavedMoviesPage={true}
               ></ProtectedRoute>
