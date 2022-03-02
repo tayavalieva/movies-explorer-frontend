@@ -32,6 +32,7 @@ function App() {
   });
 
   const [savedMovies, setSavedMovies] = useState([]);
+  const [showShortMovies, setShowShortMovies] = useState(false);
 
   const history = useHistory();
 
@@ -198,6 +199,21 @@ function App() {
         console.log(`Render error: ${err}`);
       });
   }
+  const shortMovieDuration = 40;
+
+  function toggleCheckBox() {
+    //console.log("short movies");
+    setShowShortMovies(!showShortMovies);
+  }
+  console.log("showShortMovies", showShortMovies);
+
+  function filterShortMovies(moviesArray) {
+    if (moviesArray.length > 0) {
+      return moviesArray.filter((movie) =>
+        showShortMovies ? movie.duration <= shortMovieDuration : true
+      );
+    }
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -220,9 +236,10 @@ function App() {
                 component={Movies}
                 isLoggedIn={isLoggedIn}
                 allMovies={allMovies}
-                searchedMovies={searchedMovies}
+                searchedMovies={filterShortMovies(searchedMovies)}
                 savedMovies={savedMovies}
                 onSearchMovie={searchMovie}
+                onFilter={toggleCheckBox}
                 onSaveMovie={handleSaveMovie}
                 onDeleteMovie={handleDeleteMovie}
                 moviesPageMessage={moviesPageMessage}
@@ -236,7 +253,8 @@ function App() {
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 onSearch={searchMovie}
-                savedMovies={savedMovies}
+                onFilter={toggleCheckBox}
+                savedMovies={filterShortMovies(savedMovies)}
                 onDeleteMovie={handleDeleteMovie}
                 emptyListMessage={emptySavedMoviesListMessage}
                 isSavedMoviesPage={true}

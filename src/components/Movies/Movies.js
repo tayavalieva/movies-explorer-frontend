@@ -14,8 +14,6 @@ import mainApi from "../../utils/MainApi";
 function Movies(props) {
   const [isSideModalOpen, setSideModalOpen] = useState(false);
 
-  //const [filteredShortMovies, setFilteredShortMovies] = useState([]);
-
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleMenuClick() {
@@ -42,7 +40,10 @@ function Movies(props) {
             onSearchMovie={props.onSearchMovie}
             isSavedMoviesPage={props.isSavedMoviesPage}
           />
-          <FilterCheckbox />
+          <FilterCheckbox
+            onFilter={props.onFilter}
+            isShortMovie={props.isShortMovie}
+          />
           <MoviesCardList
             movies={props.searchedMovies}
             savedMovies={props.savedMovies}

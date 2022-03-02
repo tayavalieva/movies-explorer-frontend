@@ -1,10 +1,11 @@
 import "./FilterCheckbox.css";
 
-function FilterCheckbox() {
+function FilterCheckbox(props) {
   return (
     <section className="filter-checkbox">
       <label className="filter-checkbox__container">
         <input
+          onChange={props.onFilter}
           type="checkbox"
           name="short-movies"
           id="short-movies"
