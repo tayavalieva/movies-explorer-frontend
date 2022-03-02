@@ -215,6 +215,8 @@ function App() {
     }
   }
 
+  console.log("show if logged in:", isLoggedIn, currentUser);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -228,7 +230,9 @@ function App() {
                 <Register onRegister={handleRegister} />
               </Route>
 
-              <ProtectedRoute exact path="/" component={Main}></ProtectedRoute>
+              <Route exact path="/">
+                <Main />
+              </Route>
 
               <ProtectedRoute
                 exact
