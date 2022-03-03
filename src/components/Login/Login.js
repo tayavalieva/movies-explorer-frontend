@@ -1,22 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Form from "../Form/Form";
+import validator from "validator";
+import { useEffect } from "react/cjs/react.development";
 
 function Login({ onLogin }) {
-  const [userAuthorization, setUserAuthorization] = useState({
+  const [userLoginDetails, setUserLoginDetails] = useState({
     email: "",
     password: "",
   });
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setUserAuthorization({ ...userAuthorization, [name]: value });
-  }
+  const [isFormValid, setIsFormValid] = useState({
+    emailValid: false,
+    passwordValid: false,
+  });
+
+  const handleInputChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setUserLoginDetails((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    },
+    [setUserLoginDetails]
+  );
+
+  //validate inputs
+  useEffect(() => {
+    const emailValid = validator.isEmail(userLoginDetails.email);
+    const passwordValid = userLoginDetails.password.length > 7;
+
+    setIsFormValid({
+      emailValid,
+      passwordValid,
+    });
+  }, [userLoginDetails]);
+
+  const { emailValid, passwordValid } = isFormValid;
+
+  const isButtonDisabled = !emailValid || !passwordValid;
 
   function handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = userAuthorization;
+    const { email, password } = userLoginDetails;
     onLogin(email, password);
   }
 
@@ -44,11 +72,15 @@ function Login({ onLogin }) {
             className="form__input"
             type="email"
             name="email"
-            value={userAuthorization.email}
-            onChange={handleChange}
+            value={userLoginDetails.email}
+            onChange={handleInputChange}
             required
           ></input>
-          <span className="form__input-error"></span>
+          {!emailValid && (
+            <span className="form__input-error">
+              Введите email в корректном формате
+            </span>
+          )}
         </label>
         <label className="form__input-label">
           Пароль
@@ -56,13 +88,21 @@ function Login({ onLogin }) {
             className="form__input"
             type="password"
             name="password"
-            value={userAuthorization.name}
-            onChange={handleChange}
+            value={userLoginDetails.name}
+            onChange={handleInputChange}
             required
           ></input>
-          <span className="form__input-error"></span>
+          {!passwordValid && (
+            <span className="form__input-error">
+              Введите пароль длиннее 8 символов
+            </span>
+          )}
         </label>
-        <button className="form__button" type="submit">
+        <button
+          className="form__button"
+          type="submit"
+          disabled={isButtonDisabled}
+        >
           Войти
         </button>
       </Form>
