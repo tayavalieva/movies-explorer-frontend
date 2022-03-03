@@ -18,9 +18,13 @@ function SearchForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onSearchMovie(searchedMovie, props.isSavedMoviesPage);
-    resetInput();
-    setError("");
+    if (searchedMovie.length < 1) {
+      setError("Нужно ввести ключевое слово");
+    } else {
+      props.onSearchMovie(searchedMovie, props.isSavedMoviesPage);
+      resetInput();
+      setError("");
+    }
   }
 
   return (
