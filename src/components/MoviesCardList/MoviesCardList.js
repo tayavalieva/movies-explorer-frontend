@@ -36,12 +36,20 @@ function MoviesCardList(props) {
   // 1 стейт к-во фильмов, кот показывать
   // изменять в 2 случаях на useEffect на ширину экрана к тотал филмс добавить что-то чтобы делилось остаток от деления
 
+  //info messages
+  const message =
+    props.movies.length <= 0
+      ? props.isSavedMoviesPage
+        ? "Пока нет сохраненных фильмов"
+        : "Фильмов не найдено"
+      : null;
+
   return (
     <section className="card-list__container">
       <Preloader />
       <ul className="card-list">
-        {props.error ? (
-          <p className="card-list__message">{props.error}</p>
+        {message ? (
+          <p className="card-list__message">{message}</p>
         ) : (
           props.movies
             .slice(

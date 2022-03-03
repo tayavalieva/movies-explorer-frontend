@@ -23,7 +23,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [moviesPageMessage, setMoviesPageMessage] = useState("");
+  const [searchResultMessage, setSearchResultMessage] = useState("");
   const [allMovies, setAllMovies] = useState([]);
 
   const [searchedMovies, setSearchedMovies] = useState(() => {
@@ -120,7 +120,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        setMoviesPageMessage(
+        setSearchResultMessage(
           "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
         );
       });
@@ -149,9 +149,6 @@ function App() {
     updateSavedMovies();
   }, [currentUser]);
 
-  const emptySavedMoviesListMessage = "Нет сохранненных фильмов";
-  const emptySearchedMoviesListMessage = "Вы еще ничего не искали";
-
   //find movies by users' keyword and save them to searchedMovies and local storage
   function searchMovie(name, isSavedMoviesPage) {
     const keyword = name.toLowerCase();
@@ -163,7 +160,7 @@ function App() {
         (movie.nameEN != null && movie.nameEN.toLowerCase().includes(keyword))
     );
     if (searchedMovies.length < 1) {
-      setMoviesPageMessage("Ничего не найдено");
+      setSearchResultMessage("Ничего не найдено");
     }
     setSearchedMovies(searchedMovies);
     localStorage.setItem("searchedMovies", JSON.stringify(searchedMovies));
@@ -217,8 +214,6 @@ function App() {
     }
   }
 
-  console.log("show if logged in:", isLoggedIn, currentUser);
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -248,8 +243,7 @@ function App() {
                 onFilter={toggleCheckBox}
                 onSaveMovie={handleSaveMovie}
                 onDeleteMovie={handleDeleteMovie}
-                moviesPageMessage={moviesPageMessage}
-                emptyListMessage={emptySearchedMoviesListMessage}
+                searchResultMessage={searchResultMessage}
                 isSavedMoviesPage={false}
               ></ProtectedRoute>
 
@@ -262,7 +256,6 @@ function App() {
                 onFilter={toggleCheckBox}
                 savedMovies={filterShortMovies(savedMovies)}
                 onDeleteMovie={handleDeleteMovie}
-                emptyListMessage={emptySavedMoviesListMessage}
                 isSavedMoviesPage={true}
               ></ProtectedRoute>
 

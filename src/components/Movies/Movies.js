@@ -47,7 +47,6 @@ function Movies(props) {
           <MoviesCardList
             movies={props.searchedMovies}
             savedMovies={props.savedMovies}
-            error={props.moviesPageMessage}
             onSaveMovie={props.onSaveMovie}
             onDeleteMovie={props.onDeleteMovie}
             isSavedMoviesPage={props.isSavedMoviesPage}
