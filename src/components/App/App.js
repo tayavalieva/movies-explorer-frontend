@@ -212,6 +212,8 @@ function App() {
       return moviesArray.filter((movie) =>
         showShortMovies ? movie.duration <= shortMovieDuration : true
       );
+    } else {
+      return moviesArray;
     }
   }
 
