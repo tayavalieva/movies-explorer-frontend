@@ -1,36 +1,30 @@
 import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function MoviesCardList(props) {
-  const screenWidth = window.innerWidth;
-
-  const [renderParams, setRenderParams] = useState({
-    renderNumber: 0,
-    showMore: 0,
-  });
-
   // Ширина 1280px — 12 карточек по 3 в ряд. Кнопка «Ещё» загружает по 3 карточки.
   // Ширина 768px — 8 карточек по 2 в ряд. Кнопка «Ещё» загружает по 2 карточки.
   // Ширина от 320px до 480px — 5 карточек по 1 в ряд. Кнопка «Ещё» загружает по 2 карточки.
 
   //params depending on the screen width
-  useEffect(() => {
-    if (screenWidth > 1279) {
-      setRenderParams({ renderNumber: 12, showMore: 3 });
-    } else if (screenWidth > 767) {
-      setRenderParams({ renderNumber: 8, showMore: 2 });
-    } else setRenderParams({ renderNumber: 5, showMore: 2 });
-  }, [screenWidth]);
+
+  function calculateShowMore() {
+    return window.innerWidth > 1279 ? 3 : 2;
+  }
 
   //number of movies to render
-  const [totalNumberToRender, setTotalNumberToRender] = useState(
-    renderParams.renderNumber
-  );
+  const [totalNumberToRender, setTotalNumberToRender] = useState(() => {
+    if (window.innerWidth > 1279) {
+      return 12;
+    } else if (window.innerWidth > 767) {
+      return 8;
+    } else return 5;
+  });
 
   function handleMoreClick() {
-    const moviesNumber = totalNumberToRender + renderParams.showMore;
+    const moviesNumber = totalNumberToRender + calculateShowMore();
 
     if (moviesNumber < props.movies.length) {
       setTotalNumberToRender(moviesNumber);
@@ -38,9 +32,9 @@ function MoviesCardList(props) {
       setTotalNumberToRender(props.movies.length);
     }
   }
-
-  //TODO: amend initial state of totalNumberToRender: min is renderParams.renderNumber
-  console.log(renderParams.renderNumber, totalNumberToRender);
+  //добавить до ближайшего числа, которое делится на к-во фильмов в колонке делиться без остатка на 3 или на 2
+  // 1 стейт к-во фильмов, кот показывать
+  // изменять в 2 случаях на useEffect на ширину экрана к тотал филмс добавить что-то чтобы делилось остаток от деления
 
   return (
     <section className="card-list__container">
