@@ -1,7 +1,7 @@
 import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 
 function MoviesCardList(props) {
   // Ширина 1280px — 12 карточек по 3 в ряд. Кнопка «Ещё» загружает по 3 карточки.
@@ -46,30 +46,31 @@ function MoviesCardList(props) {
 
   return (
     <section className="card-list__container">
-      <Preloader />
-      <ul className="card-list">
-        {message ? (
-          <p className="card-list__message">{message}</p>
-        ) : (
-          props.movies
-            .slice(
-              0,
-              props.isSavedMoviesPage
-                ? props.movies.length
-                : totalNumberToRender
-            )
-            .map((movie) => (
-              <MoviesCard
-                movie={movie}
-                savedMovies={props.savedMovies}
-                key={movie.id || movie.movieId}
-                onSaveMovie={props.onSaveMovie}
-                onDeleteMovie={props.onDeleteMovie}
-                isSavedMoviesPage={props.isSavedMoviesPage}
-              />
-            ))
-        )}
-      </ul>
+      <Suspense fallback={<Preloader />}>
+        <ul className="card-list">
+          {message ? (
+            <p className="card-list__message">{message}</p>
+          ) : (
+            props.movies
+              .slice(
+                0,
+                props.isSavedMoviesPage
+                  ? props.movies.length
+                  : totalNumberToRender
+              )
+              .map((movie) => (
+                <MoviesCard
+                  movie={movie}
+                  savedMovies={props.savedMovies}
+                  key={movie.id || movie.movieId}
+                  onSaveMovie={props.onSaveMovie}
+                  onDeleteMovie={props.onDeleteMovie}
+                  isSavedMoviesPage={props.isSavedMoviesPage}
+                />
+              ))
+          )}
+        </ul>
+      </Suspense>
       {props.movies.length > 0 &&
         !props.isSavedMoviesPage &&
         totalNumberToRender < props.movies.length && (
