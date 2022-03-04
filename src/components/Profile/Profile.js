@@ -54,6 +54,10 @@ function Profile({ onUpdateUser, onSignOut }) {
     });
   }
 
+  const submitButtonClassName = isButtonDisabled
+    ? "profile__form-submit-btn profile__form-submit-btn_disabled"
+    : "profile__form-submit-btn";
+
   return (
     <section className="profile">
       <Header>
@@ -86,7 +90,7 @@ function Profile({ onUpdateUser, onSignOut }) {
             </div>
             <button
               disabled={isButtonDisabled}
-              className="profile__form-submit-btn"
+              className={submitButtonClassName}
               type="submit"
             >
               Редактировать

@@ -40,6 +40,10 @@ function Register({ onRegister }) {
 
   const isButtonDisabled = !isNameValid || !isEmailValid || !isPasswordValid;
 
+  const submitButtonClassName = isButtonDisabled
+    ? "form__button form__button-disabled"
+    : "form__button";
+
   function handleSubmit(e) {
     e.preventDefault();
     const { name, email, password } = userRegistration;
@@ -103,7 +107,7 @@ function Register({ onRegister }) {
           <span className="form__input-error"></span>
         </label>
         <button
-          className="form__button"
+          className={submitButtonClassName}
           type="submit"
           disabled={isButtonDisabled}
         >

@@ -74,6 +74,12 @@
   opacity: 0.6;
 }
 
+.form__button-disabled {
+  background-color: white;
+  color: #a0a0a0;
+  border: 1px solid #e8e8e8;
+}
+
 .form__text-container {
   display: flex;
   align-items: center;

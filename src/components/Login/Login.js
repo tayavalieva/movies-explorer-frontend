@@ -42,6 +42,10 @@ function Login({ onLogin }) {
 
   const isButtonDisabled = !emailValid || !passwordValid;
 
+  const submitButtonClassName = isButtonDisabled
+    ? "form__button form__button-disabled"
+    : "form__button";
+
   function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = userLoginDetails;
@@ -99,7 +103,7 @@ function Login({ onLogin }) {
           )}
         </label>
         <button
-          className="form__button"
+          className={submitButtonClassName}
           type="submit"
           disabled={isButtonDisabled}
         >
