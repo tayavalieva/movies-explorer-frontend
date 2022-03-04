@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
+import validator from "validator";
 import "./Register.css";
 import Form from "../Form/Form";
 
@@ -10,10 +11,34 @@ function Register({ onRegister }) {
     password: "",
   });
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setUserRegistration({ ...userRegistration, [name]: value });
-  }
+  const [isFormValid, setIsFormValid] = useState({
+    isNameValid: false,
+    isEmailValid: false,
+    isPasswordValid: false,
+  });
+
+  const handleChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setUserRegistration((prevState) => ({ ...prevState, [name]: value }));
+    },
+    [setUserRegistration]
+  );
+
+  //validate inputs
+  useEffect(() => {
+    const { name, email, password } = userRegistration;
+
+    const isNameValid = name.length > 1;
+    const isEmailValid = validator.isEmail(email);
+    const isPasswordValid = password.length > 7;
+
+    setIsFormValid({ isNameValid, isEmailValid, isPasswordValid });
+  }, [userRegistration]);
+
+  const { isNameValid, isEmailValid, isPasswordValid } = isFormValid;
+
+  const isButtonDisabled = !isNameValid || !isEmailValid || !isPasswordValid;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -77,7 +102,11 @@ function Register({ onRegister }) {
           ></input>
           <span className="form__input-error"></span>
         </label>
-        <button className="form__button" type="submit">
+        <button
+          className="form__button"
+          type="submit"
+          disabled={isButtonDisabled}
+        >
           Зарегистироваться
         </button>
       </Form>
