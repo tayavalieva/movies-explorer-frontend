@@ -1,6 +1,7 @@
 import "./Profile.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import validator from "validator";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -10,14 +11,35 @@ function Profile({ onUpdateUser, onSignOut }) {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
+  const handleNameChange = useCallback(
+    (e) => {
+      setName(e.target.value);
+    },
+    [setName]
+  );
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
+  const handleEmailChange = useCallback(
+    (e) => {
+      setEmail(e.target.value);
+    },
+    [setEmail]
+  );
+
+  //validate inputs
+  useEffect(() => {
+    const nameValid = name.length > 1;
+    setIsNameValid(nameValid);
+  }, [name]);
+
+  useEffect(() => {
+    const emailValid = validator.isEmail(email);
+    setIsEmailValid(emailValid);
+  }, [email]);
+
+  const isButtonDisabled = !isNameValid || !isEmailValid;
 
   useEffect(() => {
     setName(currentUser.name);
@@ -62,7 +84,11 @@ function Profile({ onUpdateUser, onSignOut }) {
                 name="email"
               ></input>
             </div>
-            <button className="profile__form-submit-btn" type="submit">
+            <button
+              disabled={isButtonDisabled}
+              className="profile__form-submit-btn"
+              type="submit"
+            >
               Редактировать
             </button>
           </form>
