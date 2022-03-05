@@ -76,7 +76,7 @@
   opacity: 0.6;
 }
 
-.profile__form-submit-btn:hover {
+.profile__form-submit-btn_active:hover {
   cursor: pointer;
   background-color: #e8e8e8;
 }

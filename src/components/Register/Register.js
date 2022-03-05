@@ -41,8 +41,8 @@ function Register({ onRegister }) {
   const isButtonDisabled = !isNameValid || !isEmailValid || !isPasswordValid;
 
   const submitButtonClassName = isButtonDisabled
-    ? "form__button form__button-disabled"
-    : "form__button";
+    ? "form__button form__button_disabled"
+    : "form__button form__button_active";
 
   function handleSubmit(e) {
     e.preventDefault();

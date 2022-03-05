@@ -56,7 +56,7 @@ function Profile({ onUpdateUser, onSignOut }) {
 
   const submitButtonClassName = isButtonDisabled
     ? "profile__form-submit-btn profile__form-submit-btn_disabled"
-    : "profile__form-submit-btn";
+    : "profile__form-submit-btn profile__form-submit-btn_active";
 
   return (
     <section className="profile">
