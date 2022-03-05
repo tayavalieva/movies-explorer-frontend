@@ -94,6 +94,7 @@ function App() {
       .then(() => {
         setIsLoggedIn(false);
         resetLocalStorage();
+        history.push("/");
       })
       .catch((error) => {
         console.log("Sign out error:", error);
@@ -110,7 +111,6 @@ function App() {
   }
 
   //get all movies and save them to the state and to the local storage when a user logs in
-
   useEffect(() => {
     moviesApi
       .getAllMovies()
