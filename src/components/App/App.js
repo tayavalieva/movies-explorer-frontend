@@ -94,6 +94,7 @@ function App() {
       .then(() => {
         setIsLoggedIn(false);
         resetLocalStorage();
+        setSearchedMovies([]);
         history.push("/");
       })
       .catch((error) => {
