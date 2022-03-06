@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import validator from "validator";
 import "./Register.css";
 import Form from "../Form/Form";
+import { nameRegex } from "../../utils/constants";
 
 function Register({ onRegister }) {
   const [userRegistration, setUserRegistration] = useState({
@@ -29,7 +30,7 @@ function Register({ onRegister }) {
   useEffect(() => {
     const { name, email, password } = userRegistration;
 
-    const isNameValid = name.length > 1;
+    const isNameValid = nameRegex.test(name) && name.length > 1;
     const isEmailValid = validator.isEmail(email);
     const isPasswordValid = password.length > 7;
 

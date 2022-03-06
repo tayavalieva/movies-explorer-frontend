@@ -5,6 +5,7 @@ import validator from "validator";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { nameRegex } from "../../utils/constants";
 
 function Profile({ onUpdateUser, onSignOut }) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -30,7 +31,7 @@ function Profile({ onUpdateUser, onSignOut }) {
 
   //validate inputs
   useEffect(() => {
-    const nameValid = name.length > 1;
+    const nameValid = nameRegex.test(name) && name.length > 1;
     setIsNameValid(nameValid);
   }, [name]);
 
