@@ -81,6 +81,15 @@
   background-color: #e8e8e8;
 }
 
+.profile__message {
+  color: inherit;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  margin: 6px 0;
+  text-align: center;
+}
+
 .profile__exit {
   width: 410px;
   margin: 16px 0 0;

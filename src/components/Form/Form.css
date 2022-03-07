@@ -111,7 +111,8 @@
   font-weight: normal;
   font-size: 10px;
   line-height: 12px;
-  margin: 6px 0 0;
+  margin: 6px 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 454px) {

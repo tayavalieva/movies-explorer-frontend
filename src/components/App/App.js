@@ -102,16 +102,32 @@ function App() {
       });
   }
 
-  console.log("is Logged in:", isLoggedIn);
+  const [updateProfileMessage, setUpdateProfileMessage] = useState("");
 
   function handleUpdateUser(userData) {
     mainApi
       .setNewUserInfo(userData)
       .then((userData) => {
         setCurrentUser(userData.data);
+        setUpdateProfileMessage("Информация успешно обновлена");
       })
-      .catch((error) => console.log("User update error:", error));
+      .catch((error) => {
+        console.log("User update error:", error);
+        setUpdateProfileMessage(
+          "Не удалось обновить профиль, попробуйте еще раз"
+        );
+      });
   }
+
+  //reset profile update message
+  useEffect(() => {
+    if (updateProfileMessage) {
+      const timeout = setTimeout(() => setUpdateProfileMessage(""), 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [updateProfileMessage]);
 
   //get all movies and save them to the state and to the local storage when a user logs in
   useEffect(() => {
@@ -285,6 +301,7 @@ function App() {
                 onUpdateUser={handleUpdateUser}
                 onSignOut={handleSignOut}
                 onMenuClick={handleMenuClick}
+                updateMessage={updateProfileMessage}
               ></ProtectedRoute>
 
               <Route path="*">

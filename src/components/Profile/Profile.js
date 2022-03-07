@@ -7,7 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { nameRegex } from "../../utils/constants";
 
-function Profile({ onUpdateUser, onSignOut, onMenuClick }) {
+function Profile({ onUpdateUser, updateMessage, onSignOut, onMenuClick }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
@@ -31,7 +31,7 @@ function Profile({ onUpdateUser, onSignOut, onMenuClick }) {
 
   //validate inputs
   useEffect(() => {
-    const nameValid = nameRegex.test(name) && name.length > 1;
+    const nameValid = nameRegex.test(name) && name.length > 0;
     setIsNameValid(nameValid);
   }, [name]);
 
@@ -83,6 +83,11 @@ function Profile({ onUpdateUser, onSignOut, onMenuClick }) {
                 required
               ></input>
             </div>
+            {!isNameValid && (
+              <p className="form__input-error">
+                Введите имя в корректном формате
+              </p>
+            )}
             <div className="profile__input-container">
               <p className="profile__input-label-name">Email</p>
               <input
@@ -93,6 +98,12 @@ function Profile({ onUpdateUser, onSignOut, onMenuClick }) {
                 name="email"
               ></input>
             </div>
+            {!isEmailValid && (
+              <p className="form__input-error">
+                Введите email в корректном формате
+              </p>
+            )}
+            <p className="profile__message">{updateMessage}</p>
             <button
               disabled={isButtonDisabled}
               className={submitButtonClassName}
