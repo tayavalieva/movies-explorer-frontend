@@ -7,7 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { nameRegex } from "../../utils/constants";
 
-function Profile({ onUpdateUser, onSignOut }) {
+function Profile({ onUpdateUser, onSignOut, onMenuClick }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
@@ -66,7 +66,7 @@ function Profile({ onUpdateUser, onSignOut }) {
   return (
     <section className="profile">
       <Header>
-        <Navigation />
+        <Navigation onMenuClick={onMenuClick} />
       </Header>
       <main>
         <div className="profile-container">

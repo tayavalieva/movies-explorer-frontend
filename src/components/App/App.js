@@ -216,6 +216,15 @@ function App() {
       return moviesArray;
     }
   }
+  const [isSideModalOpen, setSideModalOpen] = useState(false);
+
+  function handleMenuClick() {
+    setSideModalOpen(true);
+  }
+
+  function closeSideBar() {
+    setSideModalOpen(false);
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -231,7 +240,11 @@ function App() {
               </Route>
 
               <Route exact path="/">
-                <Main isLoggedIn={isLoggedIn} />
+                <Main
+                  isLoggedIn={isLoggedIn}
+                  onMenuClick={handleMenuClick}
+                  onCloseSideBar={closeSideBar}
+                />
               </Route>
 
               <ProtectedRoute
@@ -248,6 +261,7 @@ function App() {
                 onDeleteMovie={handleDeleteMovie}
                 searchResultMessage={searchResultMessage}
                 isSavedMoviesPage={false}
+                onMenuClick={handleMenuClick}
               ></ProtectedRoute>
 
               <ProtectedRoute
@@ -260,6 +274,7 @@ function App() {
                 savedMovies={filterShortMovies(savedMovies)}
                 onDeleteMovie={handleDeleteMovie}
                 isSavedMoviesPage={true}
+                onMenuClick={handleMenuClick}
               ></ProtectedRoute>
 
               <ProtectedRoute
@@ -269,13 +284,14 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 onUpdateUser={handleUpdateUser}
                 onSignOut={handleSignOut}
+                onMenuClick={handleMenuClick}
               ></ProtectedRoute>
 
               <Route path="*">
                 <NotFound />
               </Route>
             </Switch>
-            <ModalSidebar />
+            <ModalSidebar isOpen={isSideModalOpen} onClose={closeSideBar} />
           </div>
         </div>
       </div>

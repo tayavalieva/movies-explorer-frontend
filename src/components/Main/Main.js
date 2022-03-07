@@ -10,11 +10,9 @@ import AboutProject from "./AboutProject/AboutProject";
 import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Main(props) {
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
-  const currentUser = React.useContext(CurrentUserContext);
 
   const projectRef = useRef(null);
   const techsRef = useRef(null);
@@ -28,7 +26,7 @@ function Main(props) {
     <section className="main">
       <Header>
         {props.isLoggedIn ? (
-          <Navigation />
+          <Navigation onMenuClick={props.onMenuClick} />
         ) : (
           <>
             <Logo />
