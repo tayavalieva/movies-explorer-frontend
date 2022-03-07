@@ -21,7 +21,7 @@ export const authorize = (email, password) => {
   }).then(_handlelResponse);
 };
 
-export const getUser = () => {
+export const checkUserToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     credentials: "include",

@@ -50,7 +50,7 @@ function App() {
   //check if logged in
   const tokenCheck = () => {
     auth
-      .getUser()
+      .checkUserToken()
       .then((res) => {
         if (res) {
           setIsLoggedIn(true);
@@ -101,6 +101,8 @@ function App() {
         console.log("Sign out error:", error);
       });
   }
+
+  console.log("is Logged in:", isLoggedIn);
 
   function handleUpdateUser(userData) {
     mainApi
@@ -229,7 +231,7 @@ function App() {
               </Route>
 
               <Route exact path="/">
-                <Main />
+                <Main isLoggedIn={isLoggedIn} />
               </Route>
 
               <ProtectedRoute
