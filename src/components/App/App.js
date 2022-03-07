@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import "./App.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as moviesApi from "../../utils/MoviesApi";
@@ -21,7 +21,7 @@ function App() {
     email: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
 
   const [searchResultMessage, setSearchResultMessage] = useState("");
   const [allMovies, setAllMovies] = useState([]);
@@ -35,6 +35,7 @@ function App() {
   const [showShortMovies, setShowShortMovies] = useState(false);
 
   const history = useHistory();
+  const location = useLocation();
 
   //check user info on logged in status change
 
@@ -48,26 +49,26 @@ function App() {
   }, [isLoggedIn]);
 
   //check if logged in
-  const tokenCheck = () => {
+  const tokenCheck = (url) => {
     auth
       .checkUserToken()
       .then((res) => {
         if (res) {
           setIsLoggedIn(true);
-          history.push("/movies");
+          history.push(url);
         }
       })
       .catch((error) => console.log("Render error:", error));
   };
 
   // double token check
-  React.useEffect(tokenCheck, [isLoggedIn]);
+  React.useEffect(() => tokenCheck(location.pathname), []);
 
   function handleLogin(email, password) {
     auth
       .authorize(email, password)
       .then(() => {
-        tokenCheck();
+        tokenCheck("/movies");
       })
       .catch((error) => console.log("login error:", error));
   }
@@ -76,7 +77,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        tokenCheck();
+        tokenCheck("/movies");
       })
       .catch((error) => {
         console.log("Registration error:", error);
