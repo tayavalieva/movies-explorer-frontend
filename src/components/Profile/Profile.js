@@ -40,7 +40,11 @@ function Profile({ onUpdateUser, onSignOut }) {
     setIsEmailValid(emailValid);
   }, [email]);
 
-  const isButtonDisabled = !isNameValid || !isEmailValid;
+  //if new data is the same as previous data, then button is still disabled
+  const isButtonDisabled =
+    !isNameValid ||
+    !isEmailValid ||
+    (name === currentUser.name && email === currentUser.email);
 
   useEffect(() => {
     setName(currentUser.name);
