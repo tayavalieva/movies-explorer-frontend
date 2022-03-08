@@ -174,17 +174,6 @@ function App() {
     updateSavedMovies();
   }, [currentUser]);
 
-  //find movies by users' keyword and save them to searchedMovies and local storage
-  function handleMovieSearch(name, isSavedMoviesPage) {
-    const moviesList = isSavedMoviesPage ? savedMovies : allMovies;
-    const foundMoviesList = findMovie(name, moviesList);
-    if (foundMoviesList.length < 1) {
-      setSearchResultMessage("Ничего не найдено");
-    }
-    setSearchedMovies(foundMoviesList);
-    localStorage.setItem("searchedMovies", JSON.stringify(foundMoviesList));
-  }
-
   function findMovie(keyword, moviesList) {
     const foundMoviesList = moviesList.filter(
       (movie) =>
@@ -196,6 +185,29 @@ function App() {
 
     return foundMoviesList;
   }
+
+  // /movies page search: find movies by users' keyword and save them to searchedMovies and local storage
+  function handleMovieSearch(name) {
+    const foundMoviesList = findMovie(name, allMovies);
+    if (foundMoviesList.length < 1) {
+      setSearchResultMessage("Ничего не найдено");
+    }
+    setSearchedMovies(foundMoviesList);
+    localStorage.setItem("searchedMovies", JSON.stringify(foundMoviesList));
+  }
+
+  // /saved-movies search:
+  function handleSavedMovieSearch(name) {
+    const foundMoviesList = findMovie(name, savedMovies);
+    if (foundMoviesList.length < 1) {
+      setSearchResultMessage("Ничего не найдено");
+    }
+    setSavedMovies(foundMoviesList);
+  }
+
+  useEffect(() => {
+    updateSavedMovies();
+  }, [savedMovies]);
 
   //add movies to user's save movies list
   function handleSaveMovie(movie) {
@@ -245,6 +257,7 @@ function App() {
       return moviesArray;
     }
   }
+
   const [isSideModalOpen, setSideModalOpen] = useState(false);
 
   function handleMenuClick() {
@@ -299,7 +312,7 @@ function App() {
                 path="/saved-movies"
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
-                onSearch={handleMovieSearch}
+                onSearchMovie={handleSavedMovieSearch}
                 onFilter={toggleCheckBox}
                 savedMovies={filterShortMovies(savedMovies)}
                 onDeleteMovie={handleDeleteMovie}

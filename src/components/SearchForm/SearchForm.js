@@ -21,7 +21,7 @@ function SearchForm(props) {
     if (searchedMovie.length < 1) {
       setError("Нужно ввести ключевое слово");
     } else {
-      props.onSearchMovie(searchedMovie, props.isSavedMoviesPage);
+      props.onSearchMovie(searchedMovie);
       resetInput();
       setError("");
     }
