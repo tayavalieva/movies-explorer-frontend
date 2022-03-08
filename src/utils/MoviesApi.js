@@ -5,7 +5,7 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-const handlelResponse = (res) => {
+const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -17,6 +17,6 @@ export const getAllMovies = () => {
     method: "GET",
     headers: headers,
   }).then((res) => {
-    return handlelResponse(res);
+    return handleResponse(res);
   });
 };

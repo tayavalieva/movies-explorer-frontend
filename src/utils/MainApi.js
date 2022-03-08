@@ -6,7 +6,7 @@ class Api {
     this._headers = options.headers;
   }
 
-  _handlelResponse(res) {
+  _handleResponse(res) {
     if (!res.ok) {
       return Promise.reject(`Error: ${res.status}`);
     }
@@ -18,7 +18,7 @@ class Api {
       method: "GET",
       credentials: "include",
       headers: this._headers,
-    }).then(this._handlelResponse);
+    }).then(this._handleResponse);
   }
 
   setNewUserInfo(data) {
@@ -30,7 +30,7 @@ class Api {
         name: data.name,
         email: data.email,
       }),
-    }).then(this._handlelResponse);
+    }).then(this._handleResponse);
   }
 
   saveMovie(movie) {
@@ -51,7 +51,7 @@ class Api {
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
       }),
-    }).then(this._handlelResponse);
+    }).then(this._handleResponse);
   }
 
   deleteMovie(movieId) {
@@ -60,7 +60,7 @@ class Api {
       method: "DELETE",
       credentials: "include",
       headers: this._headers,
-    }).then(this._handlelResponse);
+    }).then(this._handleResponse);
   }
 
   getSavedMovies() {
@@ -68,7 +68,7 @@ class Api {
       method: "GET",
       credentials: "include",
       headers: this._headers,
-    }).then(this._handlelResponse);
+    }).then(this._handleResponse);
   }
 }
 
