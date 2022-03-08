@@ -175,20 +175,26 @@ function App() {
   }, [currentUser]);
 
   //find movies by users' keyword and save them to searchedMovies and local storage
-  function searchMovie(name, isSavedMoviesPage) {
-    const keyword = name.toLowerCase();
+  function handleMovieSearch(name, isSavedMoviesPage) {
     const moviesList = isSavedMoviesPage ? savedMovies : allMovies;
-    const searchedMovies = allMovies.filter(
-      (movie) =>
-        (movie.nameRU != null &&
-          movie.nameRU.toLowerCase().includes(keyword)) ||
-        (movie.nameEN != null && movie.nameEN.toLowerCase().includes(keyword))
-    );
-    if (searchedMovies.length < 1) {
+    const foundMoviesList = findMovie(name, moviesList);
+    if (foundMoviesList.length < 1) {
       setSearchResultMessage("Ничего не найдено");
     }
-    setSearchedMovies(searchedMovies);
-    localStorage.setItem("searchedMovies", JSON.stringify(searchedMovies));
+    setSearchedMovies(foundMoviesList);
+    localStorage.setItem("searchedMovies", JSON.stringify(foundMoviesList));
+  }
+
+  function findMovie(keyword, moviesList) {
+    const foundMoviesList = moviesList.filter(
+      (movie) =>
+        (movie.nameRU != null &&
+          movie.nameRU.toLowerCase().includes(keyword.toLowerCase())) ||
+        (movie.nameEN != null &&
+          movie.nameEN.toLowerCase().includes(keyword.toLowerCase()))
+    );
+
+    return foundMoviesList;
   }
 
   //add movies to user's save movies list
@@ -221,6 +227,7 @@ function App() {
         console.log(`Render error: ${err}`);
       });
   }
+
   const shortMovieDuration = 40;
 
   function toggleCheckBox() {
@@ -277,7 +284,7 @@ function App() {
                 allMovies={allMovies}
                 searchedMovies={filterShortMovies(searchedMovies)}
                 savedMovies={savedMovies}
-                onSearchMovie={searchMovie}
+                onSearchMovie={handleMovieSearch}
                 onFilter={toggleCheckBox}
                 onSaveMovie={handleSaveMovie}
                 onDeleteMovie={handleDeleteMovie}
@@ -292,7 +299,7 @@ function App() {
                 path="/saved-movies"
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
-                onSearch={searchMovie}
+                onSearch={handleMovieSearch}
                 onFilter={toggleCheckBox}
                 savedMovies={filterShortMovies(savedMovies)}
                 onDeleteMovie={handleDeleteMovie}
