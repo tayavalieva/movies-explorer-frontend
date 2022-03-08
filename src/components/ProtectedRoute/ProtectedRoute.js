@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component: Component, ...props }) => {
   return (
     <Route>
       {() =>
-        props.isLoggedIn === undefined ? (
+        props.isActivePreloader ? (
           <Preloader />
         ) : props.isLoggedIn ? (
           <Component {...props} />

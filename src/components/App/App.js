@@ -14,6 +14,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
@@ -21,7 +22,7 @@ function App() {
     email: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [searchResultMessage, setSearchResultMessage] = useState("");
   const [allMovies, setAllMovies] = useState([]);
@@ -48,8 +49,11 @@ function App() {
       .catch((error) => console.log("get user error:", error));
   }, [isLoggedIn]);
 
+  const [isActivePreloader, setIsActivePreloader] = useState(false);
+
   //check if logged in
   const tokenCheck = (url) => {
+    setIsActivePreloader(true);
     auth
       .checkUserToken()
       .then((res) => {
@@ -58,7 +62,8 @@ function App() {
           history.push(url);
         }
       })
-      .catch((error) => console.log("Render error:", error));
+      .catch((error) => console.log("Render error:", error))
+      .finally(() => setIsActivePreloader(false));
   };
 
   // double token check
@@ -279,6 +284,7 @@ function App() {
                 searchResultMessage={searchResultMessage}
                 isSavedMoviesPage={false}
                 onMenuClick={handleMenuClick}
+                isActivePreloader={isActivePreloader}
               ></ProtectedRoute>
 
               <ProtectedRoute
