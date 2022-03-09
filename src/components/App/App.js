@@ -5,6 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as moviesApi from "../../utils/MoviesApi";
 import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
+import {shortMovieDuration} from '../../utils/constants'
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -34,11 +35,13 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [showShortMovies, setShowShortMovies] = useState(false);
 
+  const [updateProfileMessage, setUpdateProfileMessage] = useState("");
+  const [isSideModalOpen, setSideModalOpen] = useState(false);
+
   const history = useHistory();
   const location = useLocation();
 
   //check user info on logged in status change
-
   React.useEffect(() => {
     mainApi
       .getUserInfo()
@@ -48,6 +51,7 @@ function App() {
       .catch((error) => console.log("get user error:", error));
   }, [isLoggedIn]);
 
+  // set active Preloader when token is being checked
   const [isActivePreloader, setIsActivePreloader] = useState(false);
 
   //check if logged in
@@ -65,7 +69,7 @@ function App() {
       .finally(() => setIsActivePreloader(false));
   };
 
-  // double token check
+  // token check when page is opened
   React.useEffect(() => tokenCheck(location.pathname), []);
 
   function handleLogin(email, password) {
@@ -106,8 +110,6 @@ function App() {
         console.log("Sign out error:", error);
       });
   }
-
-  const [updateProfileMessage, setUpdateProfileMessage] = useState("");
 
   function handleUpdateUser(userData) {
     mainApi
@@ -235,8 +237,6 @@ function App() {
       });
   }
 
-  const shortMovieDuration = 40;
-
   function toggleCheckBox() {
     setShowShortMovies(!showShortMovies);
   }
@@ -250,8 +250,6 @@ function App() {
       return moviesArray;
     }
   }
-
-  const [isSideModalOpen, setSideModalOpen] = useState(false);
 
   function handleMenuClick() {
     setSideModalOpen(true);
