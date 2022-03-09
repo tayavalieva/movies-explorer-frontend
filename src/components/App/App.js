@@ -14,7 +14,6 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 import ModalSidebar from "../ModalSidebar/ModalSidebar";
-import Preloader from "../Preloader/Preloader";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
