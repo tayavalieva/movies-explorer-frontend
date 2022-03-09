@@ -211,7 +211,6 @@ function App() {
     mainApi
       .saveMovie(movie)
       .then((newSavedMovie) => {
-        console.log(newSavedMovie.data);
         if (!newSavedMovie.data) {
           throw new Error("Произошла ошибка");
         } else {
