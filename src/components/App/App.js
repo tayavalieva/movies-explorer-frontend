@@ -85,7 +85,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        tokenCheck("/movies");
+       handleLogin(email, password)
       })
       .catch((error) => {
         console.log("Registration error:", error);
