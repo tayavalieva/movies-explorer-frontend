@@ -205,10 +205,6 @@ function App() {
     setSavedMovies(foundMoviesList);
   }
 
-  useEffect(() => {
-    updateSavedMovies();
-  }, [savedMovies]);
-
   //add movies to user's save movies list
   function handleSaveMovie(movie) {
     mainApi
@@ -243,10 +239,8 @@ function App() {
   const shortMovieDuration = 40;
 
   function toggleCheckBox() {
-    //console.log("short movies");
     setShowShortMovies(!showShortMovies);
   }
-  console.log("showShortMovies", showShortMovies);
 
   function filterShortMovies(moviesArray) {
     if (moviesArray.length > 0) {
