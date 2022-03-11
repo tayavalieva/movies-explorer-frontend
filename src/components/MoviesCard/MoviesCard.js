@@ -56,7 +56,7 @@ function MoviesCard({
   return (
     <li className="card">
       <a
-        href={movie.trailerLink}
+        href={isSavedMoviesPage ? movie.trailer : movie.trailerLink}
         className="card__link"
         target="_blank"
         rel="noreferrer"
@@ -68,18 +68,19 @@ function MoviesCard({
             className="card__img"
           ></img>
         </div>
+
+        <div className="card__caption">
+          <h2 className="card__title">{movieName}</h2>
+          <p className="card__info">{movieDuration}</p>
+        </div>
       </a>
-      <div className="card__caption">
-        <button
-          className={saveButtonClassName}
-          type="button"
-          onClick={handleSaveClick}
-        >
-          {isSavedMoviesPage ? "" : isSaved ? "" : "Сохранить"}
-        </button>
-        <h2 className="card__title">{movieName}</h2>
-        <p className="card__info">{movieDuration}</p>
-      </div>
+      <button
+        className={saveButtonClassName}
+        type="button"
+        onClick={handleSaveClick}
+      >
+        {isSavedMoviesPage ? "" : isSaved ? "" : "Сохранить"}
+      </button>
     </li>
   );
 }
