@@ -79,7 +79,12 @@ function Register({ onRegister }) {
             onChange={handleChange}
             required
           ></input>
-          <span className="form__input-error"></span>
+          {!isNameValid && (
+            <span className="form__input-error">
+              Введите имя длиннее 2 символов: пожалуйста, используйте кириллицу
+              или латиницу.
+            </span>
+          )}
         </label>
 
         <label className="form__input-label">
@@ -92,7 +97,11 @@ function Register({ onRegister }) {
             onChange={handleChange}
             required
           ></input>
-          <span className="form__input-error"></span>
+          {!isEmailValid && (
+            <span className="form__input-error">
+              Пожалуйста, введите email в корректном формате
+            </span>
+          )}
         </label>
 
         <label className="form__input-label">
@@ -105,7 +114,11 @@ function Register({ onRegister }) {
             onChange={handleChange}
             required
           ></input>
-          <span className="form__input-error"></span>
+          {!isPasswordValid && (
+            <span className="form__input-error">
+              Пожалуйста, введите пароль длинее 8 символов
+            </span>
+          )}
         </label>
         <button
           className={submitButtonClassName}
