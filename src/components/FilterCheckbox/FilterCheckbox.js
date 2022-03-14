@@ -6,6 +6,7 @@ function FilterCheckbox(props) {
       <label className="filter-checkbox__container">
         <input
           onChange={props.onFilter}
+          checked={props.isChecked}
           type="checkbox"
           name="short-movies"
           id="short-movies"

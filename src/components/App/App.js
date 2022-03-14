@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as moviesApi from "../../utils/MoviesApi";
 import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
-import {shortMovieDuration} from '../../utils/constants'
+import { shortMovieDuration } from "../../utils/constants";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -32,8 +32,19 @@ function App() {
     return movies == null ? [] : JSON.parse(movies);
   });
 
+  const [keyword, setKeyword] = useState(() => {
+    const keyword = localStorage.getItem("keyword");
+    return keyword == null ? "" : keyword;
+  });
+
+  const [showShortMovies, setShowShortMovies] = useState(() => {
+    const showShortMoviesStatus = localStorage.getItem("showShortMovies");
+    return showShortMoviesStatus == null
+      ? false
+      : JSON.parse(showShortMoviesStatus);
+  });
+
   const [savedMovies, setSavedMovies] = useState([]);
-  const [showShortMovies, setShowShortMovies] = useState(false);
 
   const [updateProfileMessage, setUpdateProfileMessage] = useState("");
   const [isSideModalOpen, setSideModalOpen] = useState(false);
@@ -85,7 +96,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-       handleLogin(email, password)
+        handleLogin(email, password);
       })
       .catch((error) => {
         console.log("Registration error:", error);
@@ -95,6 +106,8 @@ function App() {
   function resetLocalStorage() {
     localStorage.removeItem("allMovies");
     localStorage.removeItem("searchedMovies");
+    localStorage.removeItem("keyword");
+    localStorage.removeItem("showShortMovies");
   }
 
   function handleSignOut() {
@@ -104,6 +117,8 @@ function App() {
         setIsLoggedIn(false);
         resetLocalStorage();
         setSearchedMovies([]);
+        setKeyword("");
+        setShowShortMovies(false);
         history.push("/");
       })
       .catch((error) => {
@@ -193,8 +208,12 @@ function App() {
     if (foundMoviesList.length < 1) {
       setSearchResultMessage("Ничего не найдено");
     }
+
     setSearchedMovies(foundMoviesList);
     localStorage.setItem("searchedMovies", JSON.stringify(foundMoviesList));
+    localStorage.setItem("keyword", name);
+    localStorage.setItem("showShortMovies", JSON.stringify(showShortMovies));
+    setKeyword(name);
   }
 
   // /saved-movies search:
@@ -236,8 +255,8 @@ function App() {
       });
   }
 
-  function toggleCheckBox() {
-    setShowShortMovies(!showShortMovies);
+  function toggleCheckBox(e) {
+    setShowShortMovies(e.target.checked);
   }
 
   function filterShortMovies(moviesArray) {
@@ -286,8 +305,10 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 allMovies={allMovies}
                 searchedMovies={filterShortMovies(searchedMovies)}
+                showShortMovies={showShortMovies}
                 savedMovies={savedMovies}
                 onSearchMovie={handleMovieSearch}
+                keyword={keyword}
                 onFilter={toggleCheckBox}
                 onSaveMovie={handleSaveMovie}
                 onDeleteMovie={handleDeleteMovie}

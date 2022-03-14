@@ -2,7 +2,7 @@ import "./SearchForm.css";
 import React, { useState } from "react";
 
 function SearchForm(props) {
-  const [searchedMovie, setSearchedMovie] = useState("");
+  const [searchedMovie, setSearchedMovie] = useState(props.keyword);
   const [error, setError] = useState("");
 
   function handleSearchMovie(e) {
@@ -12,17 +12,12 @@ function SearchForm(props) {
     }
   }
 
-  function resetInput() {
-    setSearchedMovie("");
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     if (searchedMovie.length < 1) {
       setError("Нужно ввести ключевое слово");
     } else {
       props.onSearchMovie(searchedMovie);
-      resetInput();
       setError("");
     }
   }
