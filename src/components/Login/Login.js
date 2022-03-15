@@ -1,9 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Form from "../Form/Form";
 import validator from "validator";
-import { useEffect } from "react/cjs/react.development";
 
 function Login({ onLogin }) {
   const [userLoginDetails, setUserLoginDetails] = useState({
