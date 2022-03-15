@@ -4,10 +4,6 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import React, { useState, Suspense } from "react";
 
 function MoviesCardList(props) {
-  // Ширина 1280px — 12 карточек по 3 в ряд. Кнопка «Ещё» загружает по 3 карточки.
-  // Ширина 768px — 8 карточек по 2 в ряд. Кнопка «Ещё» загружает по 2 карточки.
-  // Ширина от 320px до 480px — 5 карточек по 1 в ряд. Кнопка «Ещё» загружает по 2 карточки.
-
   //params depending on the screen width
 
   function calculateShowMore() {
