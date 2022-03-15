@@ -109,17 +109,24 @@ function App() {
     localStorage.removeItem("searchedMovies");
     localStorage.removeItem("keyword");
     localStorage.removeItem("showShortMovies");
+    localStorage.removeItem("savedMovies");
+  }
+
+  function resetState() {
+    setIsLoggedIn(false);
+    setAllMovies([]);
+    setSearchedMovies([]);
+    setKeyword("");
+    setShowShortMovies(false);
+    setSavedMovies([]);
   }
 
   function handleSignOut() {
     auth
       .signOut()
       .then(() => {
-        setIsLoggedIn(false);
         resetLocalStorage();
-        setSearchedMovies([]);
-        setKeyword("");
-        setShowShortMovies(false);
+        resetState();
         history.push("/");
       })
       .catch((error) => {
