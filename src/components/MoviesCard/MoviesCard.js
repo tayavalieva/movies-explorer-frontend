@@ -36,8 +36,8 @@ function MoviesCard({
           movie.image.formats.thumbnail ? movie.image.formats.thumbnail.url : ""
         }`,
         movieId: movie.id,
-        nameRU: movie.nameRU,
-        nameEN: movie.nameEN,
+        nameRU: movie.nameRU ? movie.nameRU : movie.nameEN,
+        nameEN: movie.nameEN ? movie.nameEN : movie.nameRU,
         isSaved: movie.isSaved,
       });
     } else {
