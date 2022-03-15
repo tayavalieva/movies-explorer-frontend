@@ -25,11 +25,13 @@ function MoviesCard({
   function handleSaveClick() {
     if (!isSaved) {
       onSaveMovie({
-        country: movie.country,
-        director: movie.director,
-        duration: movie.duration,
-        year: movie.year,
-        description: movie.description,
+        country: movie.country ? movie.country : "",
+        director: movie.director ? movie.director : "",
+        duration: movie.duration ? movie.duration : 0,
+        year: movie.year ? movie.year : "",
+        description: movie.description
+          ? movie.description
+          : movie.nameRU || movie.nameEN,
         image: `${BASE_URL}${movie.image ? movie.image.url : ""}`,
         trailer: movie.trailerLink,
         thumbnail: `${BASE_URL}${
