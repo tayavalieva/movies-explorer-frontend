@@ -8,8 +8,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Navigation from "../Navigation/Navigation";
 
 function SavedMovies(props) {
-  //if state with saved movies -пустой, то запрос на MainApi, результат запроса записать в local storage
-
   return (
     <section className="saved-movies">
       <Header>
@@ -20,6 +18,7 @@ function SavedMovies(props) {
           <SearchForm
             onSearchMovie={props.onSearchMovie}
             isSavedMoviesPage={props.isSavedMoviesPage}
+            keyword={props.keyword}
           />
           <FilterCheckbox
             onFilter={props.onFilter}

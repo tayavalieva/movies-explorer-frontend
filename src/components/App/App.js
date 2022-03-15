@@ -45,6 +45,7 @@ function App() {
   });
 
   const [savedMovies, setSavedMovies] = useState([]);
+  const [savedMoviesKeyword, setSavedMoviesKeyword] = useState("");
 
   const [updateProfileMessage, setUpdateProfileMessage] = useState("");
   const [isSideModalOpen, setSideModalOpen] = useState(false);
@@ -179,6 +180,7 @@ function App() {
             (movie) => movie.owner === currentUser._id
           );
           setSavedMovies(userSavedMovies);
+          localStorage.setItem("savedMovies", JSON.stringify(userSavedMovies));
         }
       })
       .catch((err) => {
@@ -218,11 +220,14 @@ function App() {
 
   // /saved-movies search:
   function handleSavedMovieSearch(name) {
-    const foundMoviesList = findMovie(name, savedMovies);
+    const moviesList = localStorage.getItem("savedMovies");
+    const foundMoviesList = findMovie(name, JSON.parse(moviesList));
+
     if (foundMoviesList.length < 1) {
       setSearchResultMessage("Ничего не найдено");
     }
     setSavedMovies(foundMoviesList);
+    setSavedMoviesKeyword(name);
   }
 
   //add movies to user's save movies list
@@ -324,11 +329,13 @@ function App() {
                 component={SavedMovies}
                 isLoggedIn={isLoggedIn}
                 onSearchMovie={handleSavedMovieSearch}
+                keyword={savedMoviesKeyword}
                 onFilter={toggleCheckBox}
                 savedMovies={filterShortMovies(savedMovies)}
                 onDeleteMovie={handleDeleteMovie}
                 isSavedMoviesPage={true}
                 onMenuClick={handleMenuClick}
+                updateSavedMovies={updateSavedMovies}
               ></ProtectedRoute>
 
               <ProtectedRoute

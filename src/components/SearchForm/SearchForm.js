@@ -7,14 +7,14 @@ function SearchForm(props) {
 
   function handleSearchMovie(e) {
     setSearchedMovie(e.target.value);
-    if (e.target.value.length < 1) {
+    if (!props.isSavedMoviesPage && e.target.value.length < 1) {
       setError("Нужно ввести ключевое слово");
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (searchedMovie.length < 1) {
+    if (!props.isSavedMoviesPage && searchedMovie.length < 1) {
       setError("Нужно ввести ключевое слово");
     } else {
       props.onSearchMovie(searchedMovie);
