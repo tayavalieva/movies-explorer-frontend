@@ -69,9 +69,15 @@
   transition: opacity 0.3s linear;
 }
 
-.form__button:hover {
+.form__button_active:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+
+.form__button_disabled {
+  background-color: white;
+  color: #a0a0a0;
+  border: 1px solid #e8e8e8;
 }
 
 .form__text-container {
@@ -105,7 +111,8 @@
   font-weight: normal;
   font-size: 10px;
   line-height: 12px;
-  margin: 6px 0 0;
+  margin: 6px 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 454px) {

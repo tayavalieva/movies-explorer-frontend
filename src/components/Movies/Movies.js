@@ -1,42 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Movies.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Preloader from "../Preloader/Preloader";
 import Navigation from "../Navigation/Navigation";
-import ModalSidebar from "../ModalSidebar/ModalSidebar";
-import moviesList from "../../utils/moviesList";
 
-function Movies() {
-  const [isSideModalOpen, setSideModalOpen] = useState(false);
-
-  function handleMenuClick() {
-    setSideModalOpen(true);
-  }
-
-  function closeSideBar() {
-    setSideModalOpen(false);
-  }
-
+function Movies(props) {
   return (
     <section className="movies">
       <Header>
-        <Navigation onMenuClick={handleMenuClick} />
+        <Navigation onMenuClick={props.onMenuClick} />
       </Header>
       <main>
         <div className="movies-container">
-          <SearchForm />
-          <FilterCheckbox />
-          <Preloader />
-          <MoviesCardList movies={moviesList} isSavedMoviesList={false} />
-          <button className="movies__more-button">Ещё</button>
+          <SearchForm
+            onSearchMovie={props.onSearchMovie}
+            isSavedMoviesPage={props.isSavedMoviesPage}
+            keyword={props.keyword}
+          />
+          <FilterCheckbox
+            onFilter={props.onFilter}
+            isChecked={props.showShortMovies}
+          />
+          <MoviesCardList
+            movies={props.searchedMovies}
+            savedMovies={props.savedMovies}
+            onSaveMovie={props.onSaveMovie}
+            onDeleteMovie={props.onDeleteMovie}
+            isSavedMoviesPage={props.isSavedMoviesPage}
+          />
         </div>
       </main>
       <Footer />
-      <ModalSidebar isOpen={isSideModalOpen} onClose={closeSideBar} />
     </section>
   );
 }

@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Main.css";
 import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 import Logo from "../Logo/Logo";
 import Footer from "../Footer/Footer";
 import Promo from "./Promo/Promo";
@@ -10,7 +11,7 @@ import Techs from "./Techs/Techs";
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 
-function Main() {
+function Main(props) {
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
   const projectRef = useRef(null);
@@ -24,16 +25,23 @@ function Main() {
   return (
     <section className="main">
       <Header>
-        <Logo />
-        <div className="header__auth-container">
-          <Link to="/signup" className="header__auth-link">
-            Регистрация
-          </Link>
-          <Link to="/signin" className="header__auth-link">
-            Войти
-          </Link>
-        </div>
+        {props.isLoggedIn ? (
+          <Navigation onMenuClick={props.onMenuClick} />
+        ) : (
+          <>
+            <Logo />
+            <div className="header__auth-container">
+              <Link to="/signup" className="header__auth-link">
+                Регистрация
+              </Link>
+              <Link to="/signin" className="header__auth-link">
+                Войти
+              </Link>
+            </div>
+          </>
+        )}
       </Header>
+
       <main>
         <Promo
           onProjectClick={handleProjectClick}
