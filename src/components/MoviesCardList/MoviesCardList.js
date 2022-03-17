@@ -28,9 +28,10 @@ function MoviesCardList(props) {
       setTotalNumberToRender(props.movies.length);
     }
   }
-  //добавить до ближайшего числа, которое делится на к-во фильмов в колонке делиться без остатка на 3 или на 2
-  // 1 стейт к-во фильмов, кот показывать
-  // изменять в 2 случаях на useEffect на ширину экрана к тотал филмс добавить что-то чтобы делилось остаток от деления
+  //TODO: add to the closest number % by films number !== 0 (should be number % 2 || number % 3 !== 0)
+  // state of films to render
+  // useEffect on screen width change: add a number of films to total films to render so that the final number of films to render
+  // is divisible by 3 or 2 without remainder (so that it is divisble by the remainder)
 
   //info messages
   const message =
