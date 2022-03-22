@@ -3,38 +3,37 @@ import React from "react";
 
 const AboutProject = React.forwardRef((_props, ref) => (
   <section ref={ref} className="about-project" id="about-project">
-    <h2 className="about-project__title">О проекте</h2>
+    <h2 className="about-project__title">About Project</h2>
     <ul className="about-project__table">
       <li className="about-project__table-cell">
         <h3 className="about-project__content-title">
-          Дипломный проект включал 5 этапов
+          My final project included 5 stages
         </h3>
         <p className="about-project__content">
-          Составление плана, работу над бэкендом, вёрстку, добавление
-          функциональности и финальные доработки.
+          Planning, backend development, layout creation, frontend functionality
+          on React, final revisions.
         </p>
       </li>
       <li className="about-project__table-cell">
         <h3 className="about-project__content-title">
-          На выполнение диплома ушло 5 недель
+          It took 5 weeks to complete the project.
         </h3>
         <p className="about-project__content">
-          У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
-          соблюдать, чтобы успешно защититься.
+          Every stage had soft and hard deadlines to keep.
         </p>
       </li>
     </ul>
     <div className="about-project__timeline">
       <div className="about-project__timeline-filled about-project__timeline-20">
-        <p className="about-project__timeline-label">1 неделя</p>
+        <p className="about-project__timeline-label">1 week</p>
       </div>
-      <p className="about-project__timeline-label">4 недели</p>
+      <p className="about-project__timeline-label">4 weeks</p>
     </div>
     <div className="about-project__timeline-caption">
       <div className="about-project__timeline-20">
-        <p className="about-project__timeline-caption-text">Back-end</p>
+        <p className="about-project__timeline-caption-text">Backend</p>
       </div>
-      <p className="about-project__timeline-caption-text">Front-end</p>
+      <p className="about-project__timeline-caption-text">Frontend</p>
     </div>
   </section>
 ));

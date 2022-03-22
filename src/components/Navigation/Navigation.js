@@ -10,14 +10,14 @@ function Navigation({ onMenuClick, isSideModalOpen }) {
         <div className="header__nav-films">
           <Logo />
           <NavLink to="/movies" className="header__nav-link">
-            Фильмы
+            Films
           </NavLink>
           <NavLink to="saved-movies" className="header__nav-link">
-            Сохраненные фильмы
+            My films
           </NavLink>
         </div>
         <NavLink to="/profile" className="header__profile">
-          Аккаунт <div className="header__profile-icon"></div>
+          Profile <div className="header__profile-icon"></div>
         </NavLink>
         <div className="header__menu" onClick={onMenuClick}>
           <div className="header__menu-el"></div>

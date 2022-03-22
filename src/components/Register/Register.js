@@ -54,15 +54,15 @@ function Register({ onRegister }) {
   return (
     <section className="register">
       <Form
-        title="Добро пожаловать!"
+        title="Hi!"
         onSubmit={handleSubmit}
         link={
           <div className="form__text-container">
             <p className="form__text">
-              Уже зарегистрированы?
+              Already registered?
               <span>
                 <Link to="/signin" className="form__link">
-                  Войти
+                  Log in
                 </Link>
               </span>
             </p>
@@ -70,7 +70,7 @@ function Register({ onRegister }) {
         }
       >
         <label className="form__input-label">
-          Имя
+          Name
           <input
             className="form__input"
             type="text"
@@ -81,8 +81,7 @@ function Register({ onRegister }) {
           ></input>
           {!isNameValid && (
             <span className="form__input-error">
-              Введите имя длиннее 2 символов: пожалуйста, используйте кириллицу
-              или латиницу.
+              Please ensure the name you've entered has at least two characters
             </span>
           )}
         </label>
@@ -99,13 +98,13 @@ function Register({ onRegister }) {
           ></input>
           {!isEmailValid && (
             <span className="form__input-error">
-              Пожалуйста, введите email в корректном формате
+              Please ensure proper email format
             </span>
           )}
         </label>
 
         <label className="form__input-label">
-          Пароль
+          Password
           <input
             className="form__input"
             type="password"
@@ -116,7 +115,7 @@ function Register({ onRegister }) {
           ></input>
           {!isPasswordValid && (
             <span className="form__input-error">
-              Пожалуйста, введите пароль длинее 8 символов
+              Your password needs to be at least 8 characters long
             </span>
           )}
         </label>
@@ -125,7 +124,7 @@ function Register({ onRegister }) {
           type="submit"
           disabled={isButtonDisabled}
         >
-          Зарегистироваться
+          Register
         </button>
       </Form>
     </section>

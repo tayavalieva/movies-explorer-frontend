@@ -37,8 +37,8 @@ function MoviesCardList(props) {
   const message =
     props.movies.length <= 0
       ? props.isSavedMoviesPage
-        ? "Пока нет сохраненных фильмов"
-        : "Фильмов не найдено"
+        ? "No saved films yet"
+        : "No films found"
       : null;
 
   return (
@@ -72,7 +72,7 @@ function MoviesCardList(props) {
         !props.isSavedMoviesPage &&
         totalNumberToRender < props.movies.length && (
           <button className="card-list__more" onClick={handleMoreClick}>
-            Ещё
+            Show more
           </button>
         )}
     </section>

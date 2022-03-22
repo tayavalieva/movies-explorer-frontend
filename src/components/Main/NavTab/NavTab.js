@@ -4,13 +4,13 @@ function NavTab({ onProjectClick, onTechsClick, onAboutMeClick }) {
   return (
     <nav className="nav">
       <button onClick={onProjectClick} className="nav-link">
-        О проекте
+        About project
       </button>
       <button onClick={onTechsClick} className="nav-link">
-        Технологии
+        Tech stack
       </button>
       <button onClick={onAboutMeClick} className="nav-link">
-        Студент
+        About me
       </button>
     </nav>
   );

@@ -70,10 +70,10 @@ function Profile({ onUpdateUser, updateMessage, onSignOut, onMenuClick }) {
       </Header>
       <main>
         <div className="profile-container">
-          <h2 className="profile__greeting">Привет, {currentUser.name}!</h2>
+          <h2 className="profile__greeting">Hi, {currentUser.name}!</h2>
           <form className="profile__form-container" onSubmit={handleSubmit}>
             <div className="profile__input-container">
-              <p className="profile__input-label-name">Имя</p>
+              <p className="profile__input-label-name">Name</p>
               <input
                 type="text"
                 className="profile__input"
@@ -85,7 +85,7 @@ function Profile({ onUpdateUser, updateMessage, onSignOut, onMenuClick }) {
             </div>
             {!isNameValid && (
               <p className="form__input-error">
-                Введите имя в корректном формате
+                Please use only letters and numbers
               </p>
             )}
             <div className="profile__input-container">
@@ -100,7 +100,7 @@ function Profile({ onUpdateUser, updateMessage, onSignOut, onMenuClick }) {
             </div>
             {!isEmailValid && (
               <p className="form__input-error">
-                Введите email в корректном формате
+                Please ensure email is in proper format
               </p>
             )}
             <p className="profile__message">{updateMessage}</p>
@@ -109,11 +109,11 @@ function Profile({ onUpdateUser, updateMessage, onSignOut, onMenuClick }) {
               className={submitButtonClassName}
               type="submit"
             >
-              Редактировать
+              Edit
             </button>
           </form>
           <Link to="/signin" onClick={onSignOut} className="profile__exit">
-            Выйти из аккаунта
+            Log out
           </Link>
         </div>
       </main>
