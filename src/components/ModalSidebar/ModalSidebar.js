@@ -14,17 +14,17 @@ function ModalSidebar(props) {
           <nav className="modal-sidebar__nav">
             <div className="modal-sidebar__nav-links">
               <NavLink to="/" className="modal-sidebar__nav-link">
-                Главная
+                Main
               </NavLink>
               <NavLink to="/movies" className="modal-sidebar__nav-link">
-                Фильмы
+                Films
               </NavLink>
               <NavLink to="saved-movies" className="modal-sidebar__nav-link">
-                Сохраненные фильмы
+                My films
               </NavLink>
             </div>
             <NavLink to="/profile" className="modal-sidebar__profile">
-              Аккаунт <div className="modal-sidebar__profile-icon"></div>
+              Profile <div className="modal-sidebar__profile-icon"></div>
             </NavLink>
           </nav>
         </div>

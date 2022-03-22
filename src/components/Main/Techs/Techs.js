@@ -3,11 +3,10 @@ import React from "react";
 
 const Techs = React.forwardRef((_props, ref) => (
   <section ref={ref} className="techs" id="tech">
-    <h2 className="techs__title">Технологии</h2>
-    <h3 className="techs__content-title">7 технологий</h3>
+    <h2 className="techs__title">Tech stack</h2>
+    <h3 className="techs__content-title">7 technologies</h3>
     <p className="techs__content">
-      На курсе веб-разработки мы освоили технологии, которые применили в
-      дипломном проекте.
+      I have used the following techs and tools to create this project
     </p>
     <ul className="techs__list">
       <li className="techs__list-el">HTML</li>

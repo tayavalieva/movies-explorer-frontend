@@ -54,15 +54,15 @@ function Login({ onLogin }) {
   return (
     <section className="login">
       <Form
-        title="Рады видеть!"
+        title="Welcome back!"
         onSubmit={handleSubmit}
         link={
           <div className="form__text-container">
             <p className="form__text">
-              Еще не зарегистрированы?
+              Not registered yet?
               <span>
                 <Link to="/signup" className="form__link">
-                  Регистрация
+                  Sign up
                 </Link>
               </span>
             </p>
@@ -81,12 +81,12 @@ function Login({ onLogin }) {
           ></input>
           {!emailValid && (
             <span className="form__input-error">
-              Введите email в корректном формате
+              Please ensure proper email format
             </span>
           )}
         </label>
         <label className="form__input-label">
-          Пароль
+          Password
           <input
             className="form__input"
             type="password"
@@ -97,7 +97,7 @@ function Login({ onLogin }) {
           ></input>
           {!passwordValid && (
             <span className="form__input-error">
-              Введите пароль длиннее 8 символов
+              Your password needs to be at least 8 characters long
             </span>
           )}
         </label>
@@ -106,7 +106,7 @@ function Login({ onLogin }) {
           type="submit"
           disabled={isButtonDisabled}
         >
-          Войти
+          Log in
         </button>
       </Form>
     </section>

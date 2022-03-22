@@ -32,10 +32,10 @@ function Main(props) {
             <Logo />
             <div className="header__auth-container">
               <Link to="/signup" className="header__auth-link">
-                Регистрация
+                Sign up
               </Link>
               <Link to="/signin" className="header__auth-link">
-                Войти
+                Sign in
               </Link>
             </div>
           </>

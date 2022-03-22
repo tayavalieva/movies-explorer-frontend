@@ -8,14 +8,14 @@ function SearchForm(props) {
   function handleSearchMovie(e) {
     setSearchedMovie(e.target.value);
     if (!props.isSavedMoviesPage && e.target.value.length < 1) {
-      setError("Нужно ввести ключевое слово");
+      setError("Please enter a keyword");
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!props.isSavedMoviesPage && searchedMovie.length < 1) {
-      setError("Нужно ввести ключевое слово");
+      setError("Please enter a keyword");
     } else {
       props.onSearchMovie(searchedMovie);
       setError("");
@@ -30,7 +30,7 @@ function SearchForm(props) {
           type="text"
           name="search-field"
           value={searchedMovie}
-          placeholder="Фильм"
+          placeholder="Film"
           onChange={handleSearchMovie}
           required
         ></input>
@@ -40,7 +40,7 @@ function SearchForm(props) {
           type="submit"
           onClick={handleSubmit}
         >
-          Найти
+          Search
         </button>
       </form>
       <span className="search-form__input-error">{error}</span>

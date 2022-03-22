@@ -48,10 +48,10 @@ function MoviesCard({
   }
 
   function calculateDuration(min) {
-    return `${Math.floor(min / 60)}ч ${min % 60}м`;
+    return `${Math.floor(min / 60)}h ${min % 60}min`;
   }
 
-  const movieName = movie.nameRU;
+  const movieName = movie.nameEN;
   const movieImgURL = BASE_URL.concat("/", movie.image.url);
   const movieDuration = calculateDuration(movie.duration);
 
@@ -81,7 +81,7 @@ function MoviesCard({
         type="button"
         onClick={handleSaveClick}
       >
-        {isSavedMoviesPage ? "" : isSaved ? "" : "Сохранить"}
+        {isSavedMoviesPage ? "" : isSaved ? "" : "Save"}
       </button>
     </li>
   );

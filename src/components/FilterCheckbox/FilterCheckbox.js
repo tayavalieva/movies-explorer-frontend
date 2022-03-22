@@ -12,7 +12,7 @@ function FilterCheckbox(props) {
           id="short-movies"
           className="filter-checkbox__input"
         ></input>
-        Короткометражки
+        Short films
         <span className="filter-checkbox__toggle"></span>
       </label>
     </section>
